@@ -354,6 +354,7 @@ if __name__ == "__main__":
     # To test part 3 re-comment out the above lines and 
     # uncomment the following two lines. 
 
+    # print("testing")
 
     # print(match_with_gaps('t_ _ ting', 'testing'))
     # print(match_with_gaps('testing', 'testing'))
