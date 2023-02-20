@@ -40,3 +40,5 @@ a_very_long_variable_name_dont_name_them_this_long_pls = 0
 
 # use autocomplete to write a line that prints the value of that long variable
 # notice that Spyder also automatically adds the closed parentheses for you!
+
+# print('testing')
