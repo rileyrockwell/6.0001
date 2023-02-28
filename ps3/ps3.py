@@ -168,7 +168,7 @@ def update_hand(hand, word):
     returns: dictionary (string -> int)
     """
 
-    pass  # TO DO... Remove this line when you implement this function
+    return "testing"
 
 #
 # Problem #3: Test word validity
