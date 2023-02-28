@@ -363,9 +363,7 @@ if __name__ == "__main__":
     # print(show_possible_matches('t_ _ ting'))   #should generate z matches, s.t. y > z
     # print(show_possible_matches('t_ sting'))
 
-
-    secret_word = "testing"
-    # secret_word = choose_word(wordlist)
+    secret_word = choose_word(wordlist)
     hangman_with_hints(secret_word)
     # print(match_with_gaps("t_ _ ting", "testing")) # should return True.
     # print(match_with_gaps("testing", "testing")) # should return True.
