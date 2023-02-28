@@ -267,6 +267,8 @@ def is_valid_word(word, hand, word_list):
 
     return True
 
+print(1)
+
 
 #
 # Problem #5: Playing a hand
