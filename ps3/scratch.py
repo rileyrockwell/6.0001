@@ -13,3 +13,5 @@
 
 
 # print(get_word_score('aaa', 3))
+
+print(1)
