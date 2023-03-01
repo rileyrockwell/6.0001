@@ -26,7 +26,7 @@ SCRABBLE_LETTER_VALUES = {
 # Helper code
 # (you don't need to understand this helper code)
 
-WORDLIST_FILENAME = "/Users/rileyrockwell/GitHub/6.0001/ps3/words.txt"
+WORDLIST_FILENAME = "/workspaces/6.0001/ps3/scratch.py"
 
 def load_words():
     """
@@ -324,7 +324,7 @@ def play_hand(hand, word_list):
         # Ask user for input
         word = str(input("User-defined word: "))
         # If the input is two exclamation points:
-        if a == "!!":
+        if word == "!!":
             # End the game (break out of the loop)
             break
         # Otherwise (the input is not two exclamation points):
@@ -434,11 +434,14 @@ if __name__ == '__main__':
     word_list = load_words()
 
     hand = deal_hand(7)
-    print(hand)
+    
+    play_hand(hand, word_list)
 
-    a = str(input("Enter a word: "))
-    print(is_valid_word(a, hand, word_list))
+    # a = str(input("Enter a word: "))
+    # print(is_valid_word(a, hand, word_list))
 
     # print(calculate_handlen({'a': 1, 'b': 2, 'c': 1}))
 
     # play_game(word_list)
+
+    
