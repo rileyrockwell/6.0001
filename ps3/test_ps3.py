@@ -1,4 +1,4 @@
-from ps3 import *
+from ps3_scratch import *
 
 #
 # Test code
