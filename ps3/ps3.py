@@ -213,65 +213,6 @@ def is_valid_word(word, hand, word_list):
     # a = time.time()
     # b = time.time()
     # print("Total time to completion:", round(b - a, 2))
-    '''
-    letter = "*"
-
-    counter1 = 0
-    counter2 = 0
-    for i in word:
-        if i == "*":
-            counter1 += 1
-            for j in "aeiou":
-
-                # replace the "*" w/ the correct vowel s.t. the new word is in wordlist?
-                new_string = word.lower().replace("*", j)
-                if new_string in word_list:
-                    letter = j
-                    counter2 += 1
-                    break
-        if letter != "*":
-            break
-    if counter1 > 0:
-        if counter2 == 0:
-            return False
-        else:
-            new_word = word.lower().replace("*", letter)
-    else:
-        new_word = word
-
-    if new_word.lower() not in word_list:
-        return False
-
-    # verify that letters getting used for new_word are in hand (i.e. pre-existing dictionary).
-    a = {}
-    for i in hand.keys():
-        if i == "*":
-            a[letter] = hand[i]
-        else:
-            a[i] = hand[i]
-
-    b = {}
-    for i in hand.keys():
-        if i == "*":
-            b[letter] = hand[i]
-        else:
-            b[i] = hand[i]
-
-    for i in new_word.lower():
-        c = False
-        for j in b.keys():
-            if j == i:
-                a[i] -= 1
-                c = True
-        if c is False:
-            return False
-
-    for i in a.keys():
-        if a[i] < 0:
-            return False
-
-    return True
-    '''
 
     letter = "*"
     counter1 = 0
@@ -281,7 +222,7 @@ def is_valid_word(word, hand, word_list):
             counter1 += 1
             for j in "aeiou":
                 
-# replace the "*" w/ the correct vowel s.t. the new word is in wordlist?
+    # replace the "*" w/ the correct vowel s.t. the new word is in wordlist?
                 new_string = word.lower().replace("*", j)
                 if new_string in word_list:
                     letter = j
@@ -300,7 +241,7 @@ def is_valid_word(word, hand, word_list):
     if new_word.lower() not in word_list:
         return False
 
-# verify that letters getting used for new_word are in hand (i.e. pre-existing dictionary).
+    # verify that letters getting used for new_word are in hand (i.e. pre-existing dictionary).
     a = {}
     for i in hand.keys():
         if i == "*":
@@ -477,12 +418,6 @@ def play_game(word_list):
     """
     # print("play_game not implemented.")
     print("Will call play_hand")
-
-    # irrelevant
-    for i in range(5):
-        print("Running iteration:\t", i)
-
-    print("Total iterations:\t", 5)
 
 
 
