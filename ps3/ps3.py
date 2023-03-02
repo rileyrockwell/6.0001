@@ -335,7 +335,7 @@ def play_hand(hand, word_list):
             if is_valid_word(word, hand, word_list) == True:
                 # Tell the user how many points the word earned,
                 # and the updated total score
-                pass
+                print("Valid word")
 
             # Otherwise (the word is not valid):
             else:
@@ -351,7 +351,6 @@ def play_hand(hand, word_list):
     # Return the total score as result of function
     return total_score
 
-print(play_hand)
 #
 # Problem #6: Playing a game
 # 
@@ -427,18 +426,18 @@ def play_game(word_list):
 # when the program is run directly, instead of through an import statement
 
 if __name__ == '__main__':
-    # word_list = load_words()
+    word_list = load_words()
 
-    # hand = deal_hand(7)
+    hand = deal_hand(7)
     
-    # play_hand(hand, word_list)
+    play_hand(hand, word_list)
 
     # a = str(input("Enter a word: "))
     # print(is_valid_word(a, hand, word_list))
 
     # print(calculate_handlen({'a': 1, 'b': 2, 'c': 1}))
 
-    # play_game(word_list)
+    # play_game(word_list)  
     
     word_list = load_words()
     print(is_valid_word('is', {'i': 1, 's': 1}, word_list))
