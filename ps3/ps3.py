@@ -386,16 +386,18 @@ def substitute_hand(hand, letter):
     returns: dictionary (string -> int)
     """
     # randomly, find a new letter from the consonants and vowels
-    a = random.choice(VOWELS + CONSONANTS)
-    print(a)
 
-    print(hand)
+    while True:
+        a = random.choice(VOWELS + CONSONANTS)
+        print(a)
+
+        if a not in hand:
+            break
+
     hand[a] = hand[letter]
-    print(hand)
-    hand.remove(letter)
-    print(hand)
+    del hand[letter]
 
-
+    return hand
 
 
 
@@ -447,8 +449,8 @@ if __name__ == '__main__':
 
     hand = deal_hand(7)
     
-    total_score = play_hand(hand, word_list)
-    print("Total score for the hand:", total_score)
+#    total_score = play_hand(hand, word_list)
+#    print("Total score for the hand:", total_score)
 
     # a = str(input("Enter a word: "))
     # print(is_valid_word(a, hand, word_list))
@@ -456,4 +458,7 @@ if __name__ == '__main__':
     # print(calculate_handlen({'a': 1, 'b': 2, 'c': 1}))
 
     # play_game(word_list)
-    
+    print(hand)
+    a = str(input("User-defined letter: "))
+
+    print(substitute_hand(hand, a))
