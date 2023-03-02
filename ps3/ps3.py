@@ -296,19 +296,19 @@ def play_hand(hand, word_list):
     
     * The user may input a word.
 
-    * When any word is entered (valid or invalid), it uses up letters
+    * TO COMPLETE When any word is entered (valid or invalid), it uses up letters
       from the hand.
 
     * An invalid word is rejected, and a message is displayed asking
       the user to choose another word.
 
-    * After every valid word: the score for that word is displayed,
+    * TO COMPLETE After every valid word: the score for that word is displayed,
       the remaining letters in the hand are displayed, and the user
       is asked to input another word.
 
-    * The sum of the word scores is displayed when the hand finishes.
+    * TO COMPLETE The sum of the word scores is displayed when the hand finishes.
 
-    * The hand finishes when there are no more unused letters.
+    * 50/50 The hand finishes when there are no more unused letters.
       The user can also finish playing the hand by inputing two 
       exclamation points (the string '!!') instead of a word.
 
