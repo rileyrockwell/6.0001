@@ -26,7 +26,7 @@ SCRABBLE_LETTER_VALUES = {
 # Helper code
 # (you don't need to understand this helper code)
 
-WORDLIST_FILENAME = "/workspaces/6.0001/ps3/scratch.py"
+WORDLIST_FILENAME = "/workspaces/6.0001/ps3/words.txt"
 
 def load_words():
     """
@@ -213,7 +213,7 @@ def is_valid_word(word, hand, word_list):
     # a = time.time()
     # b = time.time()
     # print("Total time to completion:", round(b - a, 2))
-
+    '''
     letter = "*"
 
     counter1 = 0
@@ -239,8 +239,6 @@ def is_valid_word(word, hand, word_list):
     else:
         new_word = word
 
-
-
     if new_word.lower() not in word_list:
         return False
 
@@ -252,19 +250,82 @@ def is_valid_word(word, hand, word_list):
         else:
             a[i] = hand[i]
 
+    b = {}
+    for i in hand.keys():
+        if i == "*":
+            b[letter] = hand[i]
+        else:
+            b[i] = hand[i]
+
     for i in new_word.lower():
-        b = False
-        for j in hand.keys():
+        c = False
+        for j in b.keys():
             if j == i:
                 a[i] -= 1
-                b = True
-        if b is False:
+                c = True
+        if c is False:
             return False
 
     for i in a.keys():
         if a[i] < 0:
             return False
 
+    return True
+    '''
+
+    letter = "*"
+    counter1 = 0
+    counter2 = 0
+    for i in word:
+        if i == "*":
+            counter1 += 1
+            for j in "aeiou":
+                
+# replace the "*" w/ the correct vowel s.t. the new word is in wordlist?
+                new_string = word.lower().replace("*", j)
+                if new_string in word_list:
+                    letter = j
+                    counter2 += 1
+                    break
+        if letter != "*":
+            break
+    if counter1 > 0:
+        if counter2 == 0:
+            return False
+        else:
+            new_word = word.lower().replace("*", letter)
+    else:
+        new_word = word
+    print(new_word)
+    if new_word.lower() not in word_list:
+        return False
+
+# verify that letters getting used for new_word are in hand (i.e. pre-existing dictionary).
+    a = {}
+    for i in hand.keys():
+        if i == "*":
+            a[letter] = hand[i]
+        else:
+            a[i] = hand[i]
+    print(a)
+    aa = {}
+    for i in hand.keys():
+        if i == "*":
+            aa[letter] = hand[i]
+        else:
+            aa[i] = hand[i]
+    for i in new_word.lower():
+        b = False
+        for j in aa.keys():
+            if j == i:
+                a[i] -= 1
+                b = True
+        if b is False:
+            return False
+    for i in a.keys():
+        if a[i] < 0:
+            return False
+    
     return True
 
 
@@ -349,7 +410,7 @@ def play_hand(hand, word_list):
     # Return the total score as result of function
     return total_score
 
-
+print(play_hand)
 #
 # Problem #6: Playing a game
 # 
@@ -431,11 +492,11 @@ def play_game(word_list):
 # when the program is run directly, instead of through an import statement
 
 if __name__ == '__main__':
-    word_list = load_words()
+    # word_list = load_words()
 
-    hand = deal_hand(7)
+    # hand = deal_hand(7)
     
-    play_hand(hand, word_list)
+    # play_hand(hand, word_list)
 
     # a = str(input("Enter a word: "))
     # print(is_valid_word(a, hand, word_list))
@@ -443,5 +504,6 @@ if __name__ == '__main__':
     # print(calculate_handlen({'a': 1, 'b': 2, 'c': 1}))
 
     # play_game(word_list)
-
     
+    word_list = load_words()
+    print(is_valid_word('is', {'i': 1, 's': 1}, word_list))
