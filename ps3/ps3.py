@@ -248,7 +248,7 @@ def is_valid_word(word, hand, word_list):
             a[letter] = hand[i]
         else:
             a[i] = hand[i]
-    print(a)
+    
     aa = {}
     for i in hand.keys():
         if i == "*":
@@ -319,7 +319,7 @@ def play_hand(hand, word_list):
     """
     # Keep track of the total score
     total_score = 0
-    # As long as there are still letters left in the hand:
+    # TO COMPLETE: As long as there are still letters left in the hand:
     while calculate_handlen(hand) > 0:
         # Display the hand
         display_hand(hand)
@@ -336,17 +336,20 @@ def play_hand(hand, word_list):
                 # Tell the user how many points the word earned,
                 # and the updated total score
                 print("Valid word")
-
+                hand_len = calculate_handlen(hand)
+                total_score += get_word_score(word, hand_len)
+                print(total_score)
+                # update the user's hand by removing the letters of their inputted word
+                hand = update_hand(hand, word)
+                
             # Otherwise (the word is not valid):
             else:
                 # Reject invalid word (print a message)
                 print("Invalid word")
 
-            # update the user's hand by removing the letters of their inputted word
-            pass
-
     # Game is over (user entered '!!' or ran out of letters),
     # so tell user the total score
+    
 
     # Return the total score as result of function
     return total_score
@@ -382,7 +385,21 @@ def substitute_hand(hand, letter):
     letter: string
     returns: dictionary (string -> int)
     """
-    pass  # TO DO... Remove this line when you implement this function
+    # randomly, find a new letter from the consonants and vowels
+    a = random.choice(VOWELS + CONSONANTS)
+    print(a)
+
+    print(hand)
+    hand[a] = hand[letter]
+    print(hand)
+    hand.remove(letter)
+    print(hand)
+
+
+
+
+
+
 
     
 def play_game(word_list):
@@ -430,14 +447,13 @@ if __name__ == '__main__':
 
     hand = deal_hand(7)
     
-    play_hand(hand, word_list)
+    total_score = play_hand(hand, word_list)
+    print("Total score for the hand:", total_score)
 
     # a = str(input("Enter a word: "))
     # print(is_valid_word(a, hand, word_list))
 
     # print(calculate_handlen({'a': 1, 'b': 2, 'c': 1}))
 
-    # play_game(word_list)  
+    # play_game(word_list)
     
-    word_list = load_words()
-    print(is_valid_word('is', {'i': 1, 's': 1}, word_list))
