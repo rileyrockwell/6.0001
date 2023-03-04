@@ -389,7 +389,6 @@ def substitute_hand(hand, letter):
 
     while True:
         a = random.choice(VOWELS + CONSONANTS)
-        print(a)
 
         if a not in hand:
             break
@@ -433,12 +432,12 @@ def play_game(word_list):
     
     print("Welcome to the Word Game!")
     n = int(input("Total number of hands: "))
-
+    m = n
     series_total_score = 0
 
     while n > 0:
         hand = deal_hand(7)
-        
+        print("New hand...")
         display_hand(hand)
         substitute_response = input("Do you want to substitute one letter for another? (yes/no) ")
         if substitute_response == "yes":
@@ -447,10 +446,10 @@ def play_game(word_list):
         
         shit = play_hand(hand, word_list)
         series_total_score += shit
-        print(shit)
+        print("Total score for hand", str(m - n + 1), ":", shit)
         n -= 1
 
-    print(series_total_score)
+    print("Series total score:", series_total_score)
 
 #
 # Build data structures used for entire session and play game
