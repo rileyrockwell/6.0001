@@ -399,10 +399,6 @@ def substitute_hand(hand, letter):
 
     return hand
 
-
-
-
-
     
 def play_game(word_list):
     """
