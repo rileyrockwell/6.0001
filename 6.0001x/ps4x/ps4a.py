@@ -175,7 +175,7 @@ def updateHand(hand, word):
         updated_hand[i] = hand[i]
 
     # compare the differences between updated_hand and hand
-
+    
 
     print("Hand:", hand)
     print("Word:", word)
