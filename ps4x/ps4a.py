@@ -15,7 +15,7 @@ SCRABBLE_LETTER_VALUES = {
 # Helper code
 # (you don't need to understand this helper code)
 
-WORDLIST_FILENAME = "words.txt"
+WORDLIST_FILENAME = "/workspaces/6.0001/ps4x/words.txt"
 
 def loadWords():
     """
@@ -71,9 +71,23 @@ def getWordScore(word, n):
     n: integer (HAND_SIZE; i.e., hand size required for additional points)
     returns: int >= 0
     """
-    # TO DO ... <-- Remove this comment when you code this function
+    word_score = 0
 
+    if word.lower() == "":
+        return 0
+    
+    # the score for a word is the sum of the points for letters in the world, multiplied
+    # by the length of the word, plus 50 points if all n letters are used on the first
+    # word created.
+    for i in word:
+        word_score += SCRABBLE_LETTER_VALUES[i]
 
+    total_score = word_score * len(word)
+
+    if len(word) == n:
+        total_score += 50
+
+    return total_score
 
 #
 # Problem #2: Make sure you understand how this function works and what it does!
