@@ -332,7 +332,7 @@ def play_hand(hand, word_list):
         # Otherwise (the input is not two exclamation points):
         else:
             # If the word is valid:
-            if is_valid_word(word, hand, word_list) == True:
+            if is_valid_word(word, hand, word_list):
                 # Tell the user how many points the word earned,
                 # and the updated total score
                 print("Valid word")
@@ -423,17 +423,34 @@ def play_game(word_list):
       not count as one of the total number of hands the user initially
       wanted to play.
 
-            * Note: if you replay a hand, you do not get the option to substitute
-                    a letter - you must play whatever hand you just had.
+    * Note: if you replay a hand, you do not get the option to substitute
+      a letter - you must play whatever hand you just had.
       
     * Returns the total score for the series of hands
 
     word_list: list of lowercase strings
     """
-    # print("play_game not implemented.")
-    print("Will call play_hand")
+    
+    print("Welcome to the Word Game!")
+    n = int(input("Total number of hands: "))
 
+    series_total_score = 0
 
+    while n > 0:
+        hand = deal_hand(7)
+        
+        display_hand(hand)
+        substitute_response = input("Do you want to substitute one letter for another? (yes/no) ")
+        if substitute_response == "yes":
+            letter = input("What letter do you want to substitute? ")
+            hand = substitute_hand(hand, letter)
+        
+        shit = play_hand(hand, word_list)
+        series_total_score += shit
+        print(shit)
+        n -= 1
+
+    print(series_total_score)
 
 #
 # Build data structures used for entire session and play game
@@ -443,7 +460,7 @@ def play_game(word_list):
 if __name__ == '__main__':
     word_list = load_words()
 
-    hand = deal_hand(7)
+    # hand = deal_hand(7)
     
 #    total_score = play_hand(hand, word_list)
 #    print("Total score for the hand:", total_score)
@@ -454,7 +471,13 @@ if __name__ == '__main__':
     # print(calculate_handlen({'a': 1, 'b': 2, 'c': 1}))
 
     # play_game(word_list)
-    print(hand)
-    a = str(input("User-defined letter: "))
+    # print(hand)
+    # a = str(input("User-defined letter: "))
 
-    print(substitute_hand(hand, a))
+    # print(substitute_hand(hand, a))
+
+    # testing play_hand
+    # print(play_hand(hand, word_list))
+
+    # testing play_game
+    play_game(word_list)
