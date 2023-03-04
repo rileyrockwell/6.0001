@@ -75,10 +75,7 @@ def getWordScore(word, n):
 
     if word.lower() == "":
         return 0
-    
-    # the score for a word is the sum of the points for letters in the world, multiplied
-    # by the length of the word, plus 50 points if all n letters are used on the first
-    # word created.
+
     for i in word:
         word_score += SCRABBLE_LETTER_VALUES[i]
 
@@ -109,13 +106,14 @@ def displayHand(hand):
              print(letter,end=" ")       # print all on the same line
     print()                             # print an empty line
 
+
 #
 # Problem #2: Make sure you understand how this function works and what it does!
 #
 def dealHand(n):
     """
     Returns a random hand containing n lowercase letters.
-    At least n/3 the letters in the hand should be VOWELS.
+    At least n/3 of the letters in the hand should be VOWELS.
 
     Hands are represented as dictionaries. The keys are
     letters and the values are the number of times the
@@ -156,7 +154,32 @@ def updateHand(hand, word):
     hand: dictionary (string -> int)    
     returns: dictionary (string -> int)
     """
-    # TO DO ... <-- Remove this comment when you code this function
+    # Attempt 1: Peter
+    '''
+    new_hand = {}
+    for i in hand.keys():
+        if i not in word.lower():
+            new_hand[i] = hand[i]
+        if i in word.lower() and hand[i] >= 1:
+            a = word.lower().count(i)
+            new_hand[i] = hand[i] - a
+
+    return new_hand
+    '''
+
+    # Attempt 2
+    # hand: dictionary
+    # word: string
+    updated_hand = {}
+    for i in word:
+        updated_hand[i] = hand[i]
+
+    # compare the differences between updated_hand and hand
+
+
+    print("Hand:", hand)
+    print("Word:", word)
+    print("Updated hand:", updated_hand)
 
 
 
@@ -272,3 +295,21 @@ def playGame(wordList):
 if __name__ == '__main__':
     wordList = loadWords()
     playGame(wordList)
+
+    # to understand getFrequencyDict(sequence)
+    print(getFrequencyDict("hello"))
+
+    # to understand displayHand(hand)
+    hand = {'a': 1, 'q': 1, 'l': 2, 'm': 1, 'u': 1, 'i': 1}
+    print(displayHand(hand))
+
+    hand = {'h': 1, 'e': 1, 'l': 2, 'o': 1}
+    print(displayHand(hand))
+
+    # to understand dealHand(n)
+    print(dealHand(5))
+    print(dealHand(7))
+
+    # to understand updateHand(hand, word)
+    hand = {'h': 1, 'e': 1, 'l': 2, 'o': 1}
+    print(updateHand(hand, 'hell'))
