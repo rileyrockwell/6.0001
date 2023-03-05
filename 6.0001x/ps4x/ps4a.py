@@ -15,7 +15,7 @@ SCRABBLE_LETTER_VALUES = {
 # Helper code
 # (you don't need to understand this helper code)
 
-WORDLIST_FILENAME = "/workspaces/6.0001/ps4x/words.txt"
+WORDLIST_FILENAME = "/workspaces/6.0001/6.0001x/ps4x/words.txt"
 
 def loadWords():
     """
@@ -175,12 +175,10 @@ def updateHand(hand, word):
         updated_hand[i] = hand[i]
 
     # compare the differences between updated_hand and hand
-    
 
     print("Hand:", hand)
     print("Word:", word)
     print("Updated hand:", updated_hand)
-
 
 
 #
