@@ -15,7 +15,7 @@ SCRABBLE_LETTER_VALUES = {
 # Helper code
 # (you don't need to understand this helper code)
 
-WORDLIST_FILENAME = "/workspaces/6.0001/6.0001x/ps4x/words.txt"
+WORDLIST_FILENAME = "/Users/rileyrockwell/GitHub/6.0001/6.0001x/ps4x/words.txt"
 
 def loadWords():
     """
@@ -154,10 +154,13 @@ def updateHand(hand, word):
     hand: dictionary (string -> int)    
     returns: dictionary (string -> int)
     """
-    updated_hand = {}
+    updatedHand = {}
     for i in word:
-        updated_hand[i] = hand[i]
-    
+        updatedHand[i] = hand[i]
+
+    return updatedHand
+
+print(updateHand({'a': 1, 'b': 2}, 'ab'))
 
 #
 # Problem #3: Test word validity
