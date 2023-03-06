@@ -154,32 +154,10 @@ def updateHand(hand, word):
     hand: dictionary (string -> int)    
     returns: dictionary (string -> int)
     """
-    # Attempt 1: Peter
-    '''
-    new_hand = {}
-    for i in hand.keys():
-        if i not in word.lower():
-            new_hand[i] = hand[i]
-        if i in word.lower() and hand[i] >= 1:
-            a = word.lower().count(i)
-            new_hand[i] = hand[i] - a
-
-    return new_hand
-    '''
-
-    # Attempt 2
-    # hand: dictionary
-    # word: string
     updated_hand = {}
     for i in word:
         updated_hand[i] = hand[i]
-
-    # compare the differences between updated_hand and hand
-
-    print("Hand:", hand)
-    print("Word:", word)
-    print("Updated hand:", updated_hand)
-
+    
 
 #
 # Problem #3: Test word validity
