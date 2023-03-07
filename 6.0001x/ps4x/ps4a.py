@@ -155,16 +155,26 @@ def updateHand(hand, word):
     returns: dictionary (string -> int)
     """
     updatedHand = {}
+
+    hand_copy = hand.copy()
+
+    # build word_dict with the correct values corresponding to the number of times letter appears in word
     for i in word:
-        updatedHand[i] = hand[i]
+        if i in hand_copy.keys():
+            # remove i from the dictionary (assuming that 'hand' has all the letters in word, as outlined)
+            hand_copy[i] -= 1
+
+    # using the updated hand, if the key has a value greater than 1, add it to the updatedHand
+    for i in hand_copy.keys():
+        if hand_copy[i] != 0:
+            updatedHand[i] = hand_copy[i]
 
     return updatedHand
-
-print(updateHand({'a': 1, 'b': 2}, 'ab'))
 
 #
 # Problem #3: Test word validity
 #
+
 def isValidWord(word, hand, wordList):
     """
     Returns True if word is in the wordList and is entirely
@@ -176,8 +186,7 @@ def isValidWord(word, hand, wordList):
     hand: dictionary (string -> int)
     wordList: list of lowercase strings
     """
-    # TO DO ... <-- Remove this comment when you code this function
-
+    
 
 #
 # Problem #4: Playing a hand
@@ -273,22 +282,31 @@ def playGame(wordList):
 #
 if __name__ == '__main__':
     wordList = loadWords()
-    playGame(wordList)
+    # playGame(wordList)
 
-    # to understand getFrequencyDict(sequence)
-    print(getFrequencyDict("hello"))
+    # # to understand getFrequencyDict(sequence)
+    # print(getFrequencyDict("hello"))
 
-    # to understand displayHand(hand)
-    hand = {'a': 1, 'q': 1, 'l': 2, 'm': 1, 'u': 1, 'i': 1}
-    print(displayHand(hand))
+    # # to understand displayHand(hand)
+    # hand = {'a': 1, 'q': 1, 'l': 2, 'm': 1, 'u': 1, 'i': 1}
+    # print(displayHand(hand))
 
-    hand = {'h': 1, 'e': 1, 'l': 2, 'o': 1}
-    print(displayHand(hand))
+    # hand = {'h': 1, 'e': 1, 'l': 2, 'o': 1}
+    # print(displayHand(hand))
 
-    # to understand dealHand(n)
-    print(dealHand(5))
-    print(dealHand(7))
+    # # to understand dealHand(n)
+    # print(dealHand(5))
+    # print(dealHand(7))
 
-    # to understand updateHand(hand, word)
-    hand = {'h': 1, 'e': 1, 'l': 2, 'o': 1}
-    print(updateHand(hand, 'hell'))
+    # # to understand updateHand(hand, word)
+    # hand = {'h': 1, 'e': 1, 'l': 2, 'o': 1}
+    # print(updateHand(hand, 'hell'))
+
+    # to understand isValidWord(word, hand, wordList)
+    word = 'testing'
+    hand = {'t': 2, 'e': 1, 's': 1, 'i': 1, 'n': 1, 'g': 1}
+    print(isValidWord(word, hand, wordList))
+
+    word = 'testing'
+    hand = {'t': 1, 'e': 1, 's': 1, 'i': 1, 'n': 1, 'g': 1}
+    print(isValidWord(word, hand, wordList))
