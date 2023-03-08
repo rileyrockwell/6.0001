@@ -186,7 +186,31 @@ def isValidWord(word, hand, wordList):
     hand: dictionary (string -> int)
     wordList: list of lowercase strings
     """
+    # recall: wordlist (wordList = load_word() is defined in 'main')
+    # recall: hand is generated randomly (via dealHand(n))
+
+    # assume the letters in word are either (1) not entirely composed of letters
+    # in hand or (2) is not in the given wordList. if this can be 'overturned'
+    # modify 'result' to True
+
+    # assume the result is False; try to 'disprove' this throughout the function
+    result = False
+
+    # (1). ensure that all letters in word are composed of letters in hand
+    for i in word:
+        if not i in hand.keys():
+            # if one of the letters in word is not in the keys of hand
+            # that is sufficient to break out of the loop and the function
+            # will return 'False'
+            break
     
+    # if all letters in 'word' are in 'hand', inform the user
+    print("all letters in 'word' are in 'hand'")
+
+    # (2). if (1) is True, ensure that word is in wordList
+    pass
+
+    # (3). if (1) and (2) are True, return True
     
     
 
