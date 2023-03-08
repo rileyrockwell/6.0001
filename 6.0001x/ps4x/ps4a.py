@@ -194,7 +194,7 @@ def isValidWord(word, hand, wordList):
     # modify 'result' to True
 
     # assume the result is False; try to 'disprove' this throughout the function
-    result = False
+    result = bool
 
     # (1). ensure that all letters in word are composed of letters in hand
     for i in word:
@@ -202,16 +202,24 @@ def isValidWord(word, hand, wordList):
             # if one of the letters in word is not in the keys of hand
             # that is sufficient to break out of the loop and the function
             # will return 'False'
+            result = False
+            print("letter:", str(i), "from 'word' is not in 'hand'")
             break
-    
-    # if all letters in 'word' are in 'hand', inform the user
-    print("all letters in 'word' are in 'hand'")
+        else:
+            # if all letters in 'word' are in 'hand', inform the user
+            print("letter:", str(i), "from 'word' is in 'hand'")
 
     # (2). if (1) is True, ensure that word is in wordList
-    pass
+    if not word in wordList:
+        # break out of the conditional and return False for the function
+        result = False
+        print("'word' is not in the 'wordList'")
+    else:
+        result = True
+        print("'word' is in 'wordList'")
 
     # (3). if (1) and (2) are True, return True
-    
+    return result
     
 
 #
