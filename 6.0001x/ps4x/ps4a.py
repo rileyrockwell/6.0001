@@ -196,27 +196,37 @@ def isValidWord(word, hand, wordList):
     # assume the result is False; try to 'disprove' this throughout the function
     result = bool
 
+    new_dict = {}
+    for i in hand.keys():
+        if i in word:
+            new_dict[i] = hand[i]
+
     # (1). ensure that all letters in word are composed of letters in hand
     for i in word:
         if not i in hand.keys():
             # if one of the letters in word is not in the keys of hand
             # that is sufficient to break out of the loop and the function
             # will return 'False'
-            result = False
-            print("letter:", str(i), "from 'word' is not in 'hand'")
-            break
+            return False
         else:
-            # if all letters in 'word' are in 'hand', inform the user
-            print("letter:", str(i), "from 'word' is in 'hand'")
-
+            # ensure that if 'i' is in new_dict, its corresponding value is subtracted
+            # from its initial value
+            new_dict[i] -= 1
+            
+    # verify that the value corresponding to each key in new_dict is greater than 0.
+    for i in new_dict.keys():
+        if new_dict[i] < 0:
+            # the 'i-th' letter has already been used, and cannot be used again
+            return False
+        
     # (2). if (1) is True, ensure that word is in wordList
     if not word in wordList:
         # break out of the conditional and return False for the function
-        result = False
-        print("'word' is not in the 'wordList'")
+        # 'word' is not in 'wordList'
+        return False
     else:
+        # 'word' is in 'wordList'
         result = True
-        print("'word' is in 'wordList'")
 
     # (3). if (1) and (2) are True, return True
     return result
@@ -233,8 +243,11 @@ def calculateHandlen(hand):
     hand: dictionary (string-> int)
     returns: integer
     """
-    # TO DO... <-- Remove this comment when you code this function
+    counter = 0
+    for i in hand.keys():
+        counter += hand[i]
 
+    return counter
 
 
 def playHand(hand, wordList, n):
@@ -337,10 +350,13 @@ if __name__ == '__main__':
     # print(updateHand(hand, 'hell'))
 
     # to understand isValidWord(word, hand, wordList)
-    word = 'testing'
-    hand = {'t': 2, 'e': 1, 's': 1, 'i': 1, 'n': 1, 'g': 1}
-    print(isValidWord(word, hand, wordList))
+    # word = 'testing'
+    # hand = {'t': 2, 'e': 1, 's': 1, 'i': 1, 'n': 1, 'g': 1}
+    # print(isValidWord(word, hand, wordList))
 
-    word = 'testing'
-    hand = {'t': 1, 'e': 1, 's': 1, 'i': 1, 'n': 1, 'g': 1}
-    print(isValidWord(word, hand, wordList))
+    # word = 'testing'
+    # hand = {'t': 1, 'e': 1, 's': 1, 'i': 1, 'n': 1, 'g': 1}
+    # print(isValidWord(word, hand, wordList))
+
+    # to understand playHand(hand, wordList, n)
+    
