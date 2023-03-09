@@ -272,7 +272,6 @@ def playHand(hand, wordList, n):
       n: integer (HAND_SIZE; i.e., hand size required for additional points)
       
     """
-    
     # Keep track of the total score
     total_score = 0
     # As long as there are still letters left in the hand:
@@ -318,8 +317,28 @@ def playGame(wordList):
  
     2) When done playing the hand, repeat from step 1    
     """
-    # TO DO ... <-- Remove this comment when you code this function
-    print("playGame not yet implemented.") # <-- Remove this line when you code the function
+    user_selection = input("Please input 'n' if you want to play a new hand; 'r' if you want to play the last hand; 'e' if you want to exit: ")
+
+    valid_input = False
+
+    while valid_input == False:
+        if user_selection == 'n':
+            valid_input == True
+            # Ask the user for the number of hands they would like to play
+            n = int(input("How many hands do you want to play: "))
+            hand = dealHand(n)
+            playHand(hand, wordList, n)
+        elif user_selection == "r":
+            valid_input == True
+            print("in progress...")
+        elif user_selection == "e":
+            valid_input == True
+            print("Goodbye!")
+            break
+        else:
+            print("Input was invalid. Please try again.")
+            valid_input = False
+
    
 
 
@@ -328,9 +347,6 @@ def playGame(wordList):
 # Build data structures used for entire session and play game
 #
 if __name__ == '__main__':
-    wordList = loadWords()
-    # playGame(wordList)
-
     # # to understand getFrequencyDict(sequence)
     # print(getFrequencyDict("hello"))
 
@@ -359,3 +375,9 @@ if __name__ == '__main__':
     # print(isValidWord(word, hand, wordList))
 
     # to understand playHand(hand, wordList, n)
+    # hand = dealHand(7)
+    # print(playHand(hand, wordList, 7))
+
+    # to understand playGame(wordList)
+    wordList = loadWords()
+    playGame(wordList)
