@@ -326,8 +326,14 @@ def playGame(wordList):
             valid_input == True
             # Ask the user for the number of hands they would like to play
             n = int(input("How many hands do you want to play: "))
-            hand = dealHand(n)
-            playHand(hand, wordList, n)
+            
+            counter = 0
+            while counter < n:
+                hand = dealHand(7)
+                playHand(hand, wordList, 7)
+                counter -= 1
+
+
         elif user_selection == "r":
             valid_input == True
             print("in progress...")
