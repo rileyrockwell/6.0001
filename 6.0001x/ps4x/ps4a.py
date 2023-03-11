@@ -283,6 +283,8 @@ def playHand(hand, wordList, n):
         # If the input is a single period:
         if user_input == ".":
             # End the game (break out of the loop)
+            print("Total score for the hand:", total_score)
+            print()
             break
         # Otherwise (the input is not a single period):
         else:    
@@ -294,9 +296,11 @@ def playHand(hand, wordList, n):
             # Otherwise (the word is valid):
             else:
                 # Tell the user how many points the word earned, and the updated total score, in one line followed by a blank line
-                print("Your word amounted to:", getWordScore(user_input, n), ".", "Updated total score:", total_score)
+                a = getWordScore(user_input, n)
+                total_score += a
+                print("Your word amounted to:", a, ".", "Updated total score:", total_score)
                 # Update the hand 
-                updateHand(hand, user_input)
+                hand = updateHand(hand, user_input)
 
     # Game is over (user entered a '.' or ran out of letters), so tell user the total score
     return "Total score for this hand:", total_score
@@ -321,22 +325,18 @@ def playGame(wordList):
 
     valid_input = False
 
+    n = 0
+
     while valid_input == False:
         if user_selection == 'n':
             valid_input == True
             # Ask the user for the number of hands they would like to play
             n = int(input("How many hands do you want to play: "))
-            
-            counter = 0
-            while counter < n:
-                hand = dealHand(7)
-                playHand(hand, wordList, 7)
-                counter -= 1
-
-
+            break
         elif user_selection == "r":
             valid_input == True
             print("in progress...")
+            break
         elif user_selection == "e":
             valid_input == True
             print("Goodbye!")
@@ -344,8 +344,14 @@ def playGame(wordList):
         else:
             print("Input was invalid. Please try again.")
             valid_input = False
+        
+    counter = 0
+    while counter < n:
+        print("Welcome to a new hand")
+        hand = dealHand(7)
+        playHand(hand, wordList, 7)
+        counter += 1
 
-   
 
 
 
