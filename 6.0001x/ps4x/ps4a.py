@@ -332,6 +332,12 @@ def playGame(wordList):
             valid_input == True
             # Ask the user for the number of hands they would like to play
             n = int(input("How many hands do you want to play: "))
+            counter = 0
+            while counter < n:
+                print("Welcome to a new hand")
+                hand = dealHand(7)
+                playHand(hand, wordList, 7)
+                counter += 1
             break
         elif user_selection == "r":
             valid_input == True
@@ -345,13 +351,7 @@ def playGame(wordList):
             print("Input was invalid. Please try again.")
             valid_input = False
         
-    counter = 0
-    while counter < n:
-        print("Welcome to a new hand")
-        hand = dealHand(7)
-        playHand(hand, wordList, 7)
-        counter += 1
-
+    
 
 
 
