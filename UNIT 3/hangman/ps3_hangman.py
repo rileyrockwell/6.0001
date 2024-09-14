@@ -93,9 +93,6 @@ def getAvailableLetters(lettersGuessed):
         letters.remove(letter)
 
     return ''.join(letters)
-
-    # REVIEW: SHOULD WE NO BE RETURNING A STRING OF LETTERS SEPERATED BY A SPACE FOR 'CLEANLINESS'?
-
     
 
 def hangman(secretWord):
