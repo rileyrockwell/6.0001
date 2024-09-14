@@ -9,7 +9,7 @@
 
 import random
 
-WORDLIST_FILENAME = "words.txt"
+WORDLIST_FILENAME = "/home/riley/6.0001/UNIT 3/hangman/words.txt"
 
 def loadWords():
     """
@@ -43,15 +43,24 @@ def chooseWord(wordlist):
 # so that it can be accessed from anywhere in the program
 wordlist = loadWords()
 
+# test chooseWord
+# print(chooseWord(wordlist))
+
+a = chooseWord(wordlist)
+
 def isWordGuessed(secretWord, lettersGuessed):
     '''
     secretWord: string, the word the user is guessing
     lettersGuessed: list, what letters have been guessed so far
+    
     returns: boolean, True if all the letters of secretWord are in lettersGuessed;
       False otherwise
     '''
-    # FILL IN YOUR CODE HERE...
+    for letter in secretWord:
+        if letter not in lettersGuessed:
+            return False
 
+    return True
 
 
 def getGuessedWord(secretWord, lettersGuessed):
@@ -61,7 +70,21 @@ def getGuessedWord(secretWord, lettersGuessed):
     returns: string, comprised of letters and underscores that represents
       what letters in secretWord have been guessed so far.
     '''
-    # FILL IN YOUR CODE HERE...
+    result = ''
+
+    for letter in secretWord:
+        if letter in lettersGuessed:
+            result += letter + ' '
+        else:
+            result += '_ '
+
+    return result
+
+
+secretWord = 'testing'
+lettersGuessed = ['t']
+print(getGuessedWord(secretWord, lettersGuessed))
+
 
 
 
@@ -107,3 +130,7 @@ def hangman(secretWord):
 
 # secretWord = chooseWord(wordlist).lower()
 # hangman(secretWord)
+
+a = 'testing'
+b = ['t', 'e', 's', 'i', 'n', 'g']
+print(isWordGuessed(a, b))
