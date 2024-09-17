@@ -10,7 +10,7 @@
 import random
 import string
 
-WORDLIST_FILENAME = "/home/riley/6.0001/UNIT 3/hangman/words.txt"
+WORDLIST_FILENAME = "/home/riley/6.0001/edX/UNIT_3/hangman/words.txt"
 
 def loadWords():
     """
@@ -166,15 +166,10 @@ def hangman(secretWord):
             print('Congragulations, you won!')
 
 
-
-
-
-
-
 # When you've completed your hangman function, uncomment these two lines
 # and run this file to test! (hint: you might want to pick your own
 # secretWord while you're testing)
 
 # secretWord = chooseWord(wordlist).lower()
-secretWord = 'testing'
+secretWord = chooseWord(wordlist)
 hangman(secretWord)
