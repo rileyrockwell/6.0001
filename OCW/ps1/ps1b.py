@@ -17,12 +17,17 @@ def number_of_months(annual_salary, portion_saved, total_cost, semi_annual_raise
 		# increase current savings by your monthly return on investments
 		current_savings += current_savings * (annual_return / 12)
 		
-		# SEMI-ANNUAL RAISE
-		
-
-
 		# increment the number of months
 		months += 1
+
+		# SEMI-ANNUAL RAISE
+		# (recall, we start at month 1)
+		if months % 6 == 0:
+			annual_salary = annual_salary * (1 + semi_annual_raise)
+
+			# update your monthly salary
+			monthly_salary = annual_salary / 12
+
 
 	return "Number of months: " + str(months)
 
