@@ -1,9 +1,7 @@
 def outstandingBalance(balance, annual_interest_rate, monthly_payment_rate):	
-	# preprocessing
 	monthly_interest_rate = annual_interest_rate / 12.0
 
-
-
+	# for 12 months in 1 year
 	for month in range(1, 13):
 
 		minimum_monthly_payment = monthly_payment_rate * balance
@@ -15,7 +13,6 @@ def outstandingBalance(balance, annual_interest_rate, monthly_payment_rate):
 		balance = updated_balance_each_month
 
 		# print('Month' + str(month) + 'Remaining balance:', balance)
-
 
 	return 'Remaining balance: ' + str(round(balance, 2))
 

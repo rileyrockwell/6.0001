@@ -1,7 +1,7 @@
 def outstandingBalance(balance, annual_interest_rate, monthly_payment_rate):	
 	monthly_interest_rate = annual_interest_rate / 12.0
 
-	
+		
 
 
 
