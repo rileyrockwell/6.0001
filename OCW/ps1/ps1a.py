@@ -22,5 +22,6 @@ def number_of_months(annual_salary, portion_saved, total_cost):
 
 	return "Number of months: " + str(months)
 
+
 print(number_of_months(120000, 0.10, 1000000))
 print(number_of_months(80000, 0.15, 500000))
