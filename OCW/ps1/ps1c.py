@@ -19,6 +19,8 @@ def best_savings_rate(annual_salary):
 	current_savings = 0	
 	monthly_salary = annual_salary / 12
 	months = 1
+	down_payment = total_cost * portion_down_payment
+
 
 	epsilon = 100
 	bisection_steps = 0
@@ -30,54 +32,38 @@ def best_savings_rate(annual_salary):
 	high = 10000
 
 	# initial bisection search guess
-	guess = (low + high) // 2
+	portion_saved = (low + high) // 2
 
-	while abs(total_cost * portion_down_payment - current_savings) > epsilon:
+
+	# "we simply want your savings to be within $100 of the required down payment"
+	while (down_payment - current_savings) > epsilon:
+
+		# increase current savings by the fraction of your monthly salary designated
+		# for the down payment, with the currently designated portion_saved amount
+		current_savings += monthly_salary * (portion_saved / 10000)
+
+		# increase current savings by your monthly return on investments
+		current_savings += current_savings * (annual_return / 12)
 		
+		# increment the number of months
+		months += 1
 
+		# semi-annual raise (recall, we start at month 1)
+		if months % 6 == 0:
+			annual_salary = annual_salary * (1 + semi_annual_raise)
 
-		# while current savings is not enough to cover the down payment
-		while current_savings < portion_down_payment * total_cost:
+			# update your monthly salary
+			monthly_salary = annual_salary / 12
 
-			# increase current savings by the fraction of your monthly salary designated
-			# for the down payment
-			current_savings += monthly_salary * (portion_saved / 10000)
+	print(months)
 
-			# increase current savings by your monthly return on investments
-			current_savings += current_savings * (annual_return / 12)
-			
-			# increment the number of months
-			months += 1
+	if months > 36:
+		return "It is not possible to pay the down payment in 3 years."
 
-			# semi-annual raise (recall, we start at month 1)
-			if months % 6 == 0:
-				annual_salary = annual_salary * (1 + semi_annual_raise)
-
-				# update your monthly salary
-				monthly_salary = annual_salary / 12
 	
-
-	# recall: objective is to determine the smallest 'portion saved' amount to meet the down
-	# payment requirement in 36 months
-
-	# use bisection search to determine
-	while abs(total_cost * portion_down_payment - current_savings) > epsilon:
-
-
-
-
-		
-
-
-
-
-
-
-
-
 
 
 
 print(best_savings_rate(150000))
-print(best_savings_rate(300000))
-print(best_savings_rate(10000))
+# print(best_savings_rate(300000))
+# print(best_savings_rate(10000))
