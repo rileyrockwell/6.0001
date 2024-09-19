@@ -55,10 +55,7 @@ def best_savings_rate(annual_salary):
 			# update your monthly salary
 			monthly_salary = annual_salary / 12
 
-	print(months)
-
-	if months > 36:
-		return "It is not possible to pay the down payment in 3 years."
+	return months
 
 	
 
