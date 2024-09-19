@@ -1,6 +1,8 @@
 # bisection search: find the best rate of savings to achieve a down payment on a $1M house in 36 months
+# collaborator: https://github.com/pauquilao/MIT-6.0001-Problem-Sets/blob/master/ps1/ps1c.py
 
-def best_savings_rate(annual_salary):
+
+def best_savings_rate(base_annual_salary, duration):
 	"""
 	annual_salary: annual salary
 
@@ -12,55 +14,84 @@ def best_savings_rate(annual_salary):
 	This means we can search for an integer between 0 and 10000 (using integer division), and then convert it to a decimal percentage (using float division) to use when we are calculating the current_savings after 36 months
 	"""
 
-	semi_annual_raise = 0.07
-	annual_return = 0.04
-	portion_down_payment = 0.25
 	total_cost = 1000000
-	current_savings = 0	
-	monthly_salary = annual_salary / 12
-	months = 1
+	portion_down_payment = 0.25
+	annual_return = 0.04
+	monthly_return = annual_return / 12
+	semi_annual_raise = 0.07
 	down_payment = total_cost * portion_down_payment
 
 
+
+	# to ensure current savings can cover the downpayment (to within 100 dollars)
 	epsilon = 100
-	bisection_steps = 0
-	
-	# initial 'portion saved' low estimate
+
+	# for bisection
 	low = 0
+	initial_high = 10000
+	high = initial_high
 
-	# initial 'portion saved' high estimate
-	high = 10000
-
-	# initial bisection search guess
-	portion_saved = (low + high) // 2
-
+	# miscellaneous
+	current_savings = 0
+	iterations = 0
+	portion_saved = (high + low) // 2
 
 	# "we simply want your savings to be within $100 of the required down payment"
-	while (down_payment - current_savings) > epsilon:
+	while abs(down_payment - current_savings) > epsilon:
 
-		# increase current savings by the fraction of your monthly salary designated
-		# for the down payment, with the currently designated portion_saved amount
-		current_savings += monthly_salary * (portion_saved / 10000)
+		iterations += 1
+		# reintialize current savings for each iteration (b/c of the for loop)
+		current_savings = 0
+		# from the parameter
+		annual_salary = base_annual_salary
+		# redefine monthly salary
+		monthly_salary = annual_salary / 12
+		# initialize a monthly_savings variable
+		monthly_savings = monthly_salary * (portion_saved / 10000)
 
-		# increase current savings by your monthly return on investments
-		current_savings += current_savings * (annual_return / 12)
+		for month in range(duration):
+			current_savings += current_savings * monthly_return
+			current_savings += monthly_savings
+			
+			# semi-annual raise
+			if month % 6 == 0:
+				annual_salary += annual_salary * semi_annual_raise
+				monthly_salary = annual_salary / 12
+				monthly_savings = monthly_salary * (portion_saved / 10000)
+
 		
-		# increment the number of months
-		months += 1
 
-		# semi-annual raise (recall, we start at month 1)
-		if months % 6 == 0:
-			annual_salary = annual_salary * (1 + semi_annual_raise)
+		print(down_payment, current_savings)
 
-			# update your monthly salary
-			monthly_salary = annual_salary / 12
+		### bisection ###
+		# intialize a new variable previous_portion_saved
+		previous_portion_saved = portion_saved
 
-	return months
+		# intialize the lower bound of the bisection, as you will need to save more
+		if current_savings < down_payment:
+			low = portion_saved
+		
+		# initialize the upper bound of the bisection, as you will need to save less
+		else:
+			high = portion_saved
 
-	
+		# reintialize portion_saved for each iteration
+		portion_saved = int(round((high + low) / 2))
+
+		# if the bisection is complete
+		if previous_portion_saved == portion_saved:
+			break
+
+
+	if portion_saved == initial_high:
+		print("Not possible to save for the down payment in 36 months")
+	else:
+		print("Best savings rate: " + str(round(portion_saved / 10000, 4)))
+		print("Iterations: " + str(iterations))
 
 
 
-print(best_savings_rate(150000))
+
+print(best_savings_rate(150000, 36))
 # print(best_savings_rate(300000))
 # print(best_savings_rate(10000))
