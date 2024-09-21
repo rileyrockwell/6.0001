@@ -16,30 +16,23 @@ import string
 
 s = 'azcbobobegghakl'
 s = 'abcbcd'
+s = 'zyx'
 
 lowercase = string.ascii_lowercase
-
 lowercase_mapping = {letter: numerical_value for numerical_value, letter in enumerate(lowercase)}
 
-# now that we have a mapping of the letters to their numerical values, we can iterate through the string and check if the next letter is greater than the previous letter, from the original string 's'.
+for index in range(1, len(s)):
+    numerical_value_initial = lowercase_mapping[s[index - 1]]
+    numerical_value_subsequent = lowercase_mapping[s[index]]
 
-alphabetical_substring = ''
+    # if the letters are in alphabetical order
+    if numerical_value_initial < numerical_value_subsequent:
+        # keep track of multiple substrings simultaenously (if the need arises)
+        
+    
+    
+    # check to determine if 
 
-for char in s:
-
-# for each character in the string, s, we are triyng to determine the longest substring in alphabetical order.
-
-# (1). create a list of each alphabetical substring. find the longest substring from the list.
-# (2). 
-# (3). 
-
-
-
-
-
-
-
-
-
-
+    print(numerical_value_initial)
+    print(numerical_value_subsequent)
 
