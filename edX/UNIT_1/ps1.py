@@ -15,24 +15,20 @@ If you have time, come back to this problem after you've had a break and cleared
 import string
 
 s = 'azcbobobegghakl'
-s = 'abcbcd'
-s = 'zyx'
+# s = 'abcbcd'
 
-lowercase = string.ascii_lowercase
-lowercase_mapping = {letter: numerical_value for numerical_value, letter in enumerate(lowercase)}
+# lowercase = string.ascii_lowercase
+# lowercase_mapping = {letter: numerical_value for numerical_value, letter in enumerate(lowercase)}
 
-for index in range(1, len(s)):
-    numerical_value_initial = lowercase_mapping[s[index - 1]]
-    numerical_value_subsequent = lowercase_mapping[s[index]]
+longest = ''
+current = ''
 
-    # if the letters are in alphabetical order
-    if numerical_value_initial < numerical_value_subsequent:
-        # keep track of multiple substrings simultaenously (if the need arises)
-        
-    
-    
-    # check to determine if 
+for i in range(len(s)):
+    if i == 0 or s[i] >= s[i - 1]:
+        current += s[i]
+        if len(current) > len(longest):
+            longest = current
+    else:
+        current = s[i]
 
-    print(numerical_value_initial)
-    print(numerical_value_subsequent)
-
+print("Longest substring in alphabetical order is:", longest)
