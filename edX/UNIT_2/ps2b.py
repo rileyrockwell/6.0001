@@ -81,7 +81,6 @@ def outstandingBalance(balance, annual_interest_rate):
 
 		# increment month
 		month += 1
-		
 
 
 	# while the balance is not paid off (i.e. > 0)

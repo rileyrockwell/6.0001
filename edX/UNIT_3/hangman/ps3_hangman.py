@@ -137,33 +137,8 @@ def hangman(secretWord):
         print('Available letters:', getAvailableLetters(lettersGuessed))
         guess = str(input('Please guess a letter: '))
 
-        # ^good to go.
-
-
-        # if the user selects a letter they have already selected in a prior round
-        if guess in lettersGuessed:
-            print('Oops! You\'ve already guessed that letter:', getGuessedWord(secretWord, lettersGuessed))
-            guessesRemaining -= 1
-
-        # if the user selects a letter that is not in secret word
-        elif guess not in secretWord:
-            print('Oops! That letter is not in my word:', getGuessedWord(secretWord, lettersGuessed))
-            guessesRemaining -= 1
-
-        # if the user selects a letter that is in secret word
-        elif guess in secretWord:
-            lettersGuessed.append(guess)
-            print('Good guess:', getGuessedWord(secretWord, lettersGuessed))
-
-        # ensure the user has guesses remaining
-        if guessesRemaining == 0:
-            print('-----------')
-            print('Sorry, you ran out of guesses. The word was', secretWord + '.')
-            break
-
-        if isWordGuessed(secretWord, lettersGuessed):
-            print('-----------')
-            print('Congragulations, you won!')
+        
+        
 
 
 # When you've completed your hangman function, uncomment these two lines
@@ -172,4 +147,4 @@ def hangman(secretWord):
 
 # secretWord = chooseWord(wordlist).lower()
 secretWord = chooseWord(wordlist)
-hangman(secretWord)
+hangman('testing')

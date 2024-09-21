@@ -44,9 +44,5 @@ def outstandingBalance(balance, annual_interest_rate, monthly_payment_rate):
 	return 'Remaining balance: ' + str(round(balance, 2))
 
 
-
-
-
-
 print(outstandingBalance(42, 0.20, 0.04))
 print(outstandingBalance(484, 0.20, 0.04))

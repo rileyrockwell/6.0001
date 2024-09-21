@@ -1,13 +1,8 @@
 def outstandingBalance(balance, annual_interest_rate):	
-	pass
-
 	initial_balance = balance
 	monthly_interest_rate = annual_interest_rate / 12.0
 
-	
-
-
-
+	pass
 
 
 print(outstandingBalance(3329, 0.2))

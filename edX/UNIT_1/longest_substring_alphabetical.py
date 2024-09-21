@@ -14,31 +14,32 @@ If you have time, come back to this problem after you've had a break and cleared
 
 import string
 
-lowercase = string.ascii_lowercase
-
-index_dictionary = {letter: index for index, letter in enumerate(lowercase)}
-
-substring = ""
-results = []
-
 s = 'azcbobobegghakl'
 s = 'abcbcd'
 
+lowercase = string.ascii_lowercase
 
-for index in range(1, len(s)):
-    a = s[index - 1]
-    b = s[index]
+lowercase_mapping = {letter: numerical_value for numerical_value, letter in enumerate(lowercase)}
 
-    if index_dictionary[a] <= index_dictionary[b]:
-        substring += a
-        length = len(substring)
-    else:
-        # do not like the following line
-        substring += a
-        results.append(substring)
-        substring = ""
+# now that we have a mapping of the letters to their numerical values, we can iterate through the string and check if the next letter is greater than the previous letter, from the original string 's'.
 
-# print the longest length in results (consolidates based on numerical value of key)
-results_dict = {len(string): string for string in results}
-max_length_string = int(max(results_dict.keys()))
-print(results_dict[max_length_string])
+alphabetical_substring = ''
+
+for char in s:
+
+# for each character in the string, s, we are triyng to determine the longest substring in alphabetical order.
+
+# (1). create a list of each alphabetical substring. find the longest substring from the list.
+# (2). 
+# (3). 
+
+
+
+
+
+
+
+
+
+
+
