@@ -29,7 +29,7 @@ def load_words():
     line = inFile.readline()
     # wordlist: list of strings
     wordlist = line.split()
-    print("  ", len(wordlist), "words loaded.")
+    print(len(wordlist), "words loaded.")
     return wordlist
 
 
@@ -196,8 +196,6 @@ def hangman_with_hints(secret_word):
 
 
 if __name__ == "__main__":
-    # pass
-
     # To test part 2, comment out the pass line above and
     # uncomment the following two lines.
     

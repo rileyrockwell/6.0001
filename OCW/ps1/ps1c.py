@@ -61,7 +61,7 @@ def best_savings_rate(base_annual_salary, duration):
 
 		
 
-		print(down_payment, current_savings)
+		# print(down_payment, current_savings)
 
 		### bisection ###
 		# intialize a new variable previous_portion_saved
