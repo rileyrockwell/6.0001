@@ -12,7 +12,7 @@
 import random
 import string
 
-WORDLIST_FILENAME = "words.txt"
+WORDLIST_FILENAME = "/home/riley/6.0001/OCW/ps2/words.txt"
 
 
 def load_words():
@@ -50,6 +50,9 @@ def choose_word(wordlist):
 # so that it can be accessed from anywhere in the program
 wordlist = load_words()
 
+word = choose_word(wordlist)
+word = 'testing'
+
 
 def is_word_guessed(secret_word, letters_guessed):
     '''
@@ -60,9 +63,10 @@ def is_word_guessed(secret_word, letters_guessed):
     returns: boolean, True if all the letters of secret_word are in letters_guessed;
       False otherwise
     '''
-    # FILL IN YOUR CODE HERE AND DELETE "pass"
-    pass
-
+    for letter in secret_word:
+      if letter in letters_guessed:
+        return True
+    return False
 
 
 def get_guessed_word(secret_word, letters_guessed):
@@ -72,9 +76,15 @@ def get_guessed_word(secret_word, letters_guessed):
     returns: string, comprised of letters, underscores (_), and spaces that represents
       which letters in secret_word have been guessed so far.
     '''
-    # FILL IN YOUR CODE HERE AND DELETE "pass"
-    pass
+    return_string = ''
 
+    for letter in secret_word:
+        if letter in letters_guessed:
+            return_string += letter
+        else:
+            return_string += '_ '
+    
+    return return_string
 
 
 def get_available_letters(letters_guessed):
@@ -83,9 +93,11 @@ def get_available_letters(letters_guessed):
     returns: string (of letters), comprised of letters that represents which letters have not
       yet been guessed.
     '''
-    # FILL IN YOUR CODE HERE AND DELETE "pass"
-    pass
-    
+    available_letters = string.ascii_lowercase
+    for letter in letters_guessed:
+       available_letters.replace(letter, '')
+
+    return available_letters    
     
 
 def hangman(secret_word):
@@ -113,8 +125,59 @@ def hangman(secret_word):
     
     Follows the other limitations detailed in the problem write-up.
     '''
-    # FILL IN YOUR CODE HERE AND DELETE "pass"
-    pass
+    import string
+
+def hangman(secret_word):
+    '''
+    secret_word: string, the secret word to guess.
+    
+    Starts up an interactive game of Hangman.
+    '''
+    # Initialize variables
+    guesses_left = 6
+    letters_guessed = []
+    available_letters = string.ascii_lowercase
+    
+    # Welcome message and start game
+    print("Welcome to the game Hangman!")
+    print(f"I am thinking of a word that is {len(secret_word)} letters long.")
+    print("-------------")
+    
+    # Main game loop
+    while guesses_left > 0:
+        # Display remaining guesses and available letters
+        print(f"You have {guesses_left} guesses left.")
+        print(f"Available letters: {get_available_letters(letters_guessed)}")
+        
+        # Get user input (ensure it's a valid alphabetical character)
+        guess = input("Please guess a letter: ").lower()
+        
+        if guess not in available_letters or guess in letters_guessed:
+            print("Oops! You've already guessed that letter or it is invalid. Try again.")
+            print("-------------")
+            continue
+
+        # Add guess to the list of guessed letters
+        letters_guessed.append(guess)
+
+        # Provide feedback based on the guess
+        if guess in secret_word:
+            print(f"Good guess: {get_guessed_word(secret_word, letters_guessed)}")
+        else:
+            print(f"Oops! That letter is not in my word: {get_guessed_word(secret_word, letters_guessed)}")
+            guesses_left -= 1
+        
+        # Check if the user has guessed the word
+        if get_guessed_word(secret_word, letters_guessed) == secret_word:
+            print("-------------")
+            print("Congratulations, you won!")
+            return
+        
+        # Display game status
+        print("-------------")
+    
+    # If the user runs out of guesses, end the game
+    print(f"Sorry, you ran out of guesses. The word was {secret_word}.")
 
 
 
@@ -122,6 +185,7 @@ def hangman(secret_word):
 # of the file and uncomment the first two lines to test
 #(hint: you might want to pick your own
 # secret_word while you're doing your own testing)
+
 
 
 # -----------------------------------
@@ -200,6 +264,7 @@ if __name__ == "__main__":
     # uncomment the following two lines.
     
     secret_word = choose_word(wordlist)
+    secret_word = 'rockwell'
     hangman(secret_word)
 
 ###############
