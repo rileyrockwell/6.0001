@@ -10,7 +10,7 @@
 import random
 import string
 
-WORDLIST_FILENAME = "/home/riley/6.0001/edX/UNIT_3/hangman/words.txt"
+WORDLIST_FILENAME = "/home/riley/6.0001/edX/UNIT_3/words.txt"
 
 def loadWords():
     """
@@ -125,25 +125,53 @@ def hangman(secretWord):
     lettersGuessed = []
     mistakesMade = 0
     guessesRemaining = 8
+    substring = ''
 
 
     print('Welcome to the game Hangman!')
     print('I am thinking of a word that is', len(secretWord), 'letters long.')
     
     # while the word is not guessed
-    while not isWordGuessed(secretWord, lettersGuessed):
+    while isWordGuessed(secretWord, lettersGuessed) == False:
         print('-------------')
         print('You have', guessesRemaining, 'guesses left.')
         print('Available letters:', getAvailableLetters(lettersGuessed))
         guess = str(input('Please guess a letter: '))
+        
+        if guessesRemaining <= 1:
+            print('Sorry! That is not in the word. The word was:', secretWord)
+            break
+
+        ###
+        # if guess is in 'secretWord' and has not been guessed
+        if guess in secretWord and guess not in lettersGuessed:
+            lettersGuessed.append(guess)
+            print('Good guess:', getGuessedWord(secretWord, lettersGuessed))
+            # do not change guessesRemaining
+
+        # if guess not in 'secretWord' and has not been guessed
+        elif guess not in secretWord and guess not in lettersGuessed:
+            lettersGuessed.append(guess)
+            print('Oops! That letter is not in the word.', getGuessedWord(secretWord, lettersGuessed))
+            guessesRemaining -= 1
+
+        elif guess in secretWord and guess in lettersGuessed:
+            # do not change lettersGuessed
+            print('Oops! You already guessed that letter (in the word).', getGuessedWord(secretWord, lettersGuessed))
+            guessesRemaining -= 1
+        
+        elif guess not in secretWord and guess in lettersGuessed:
+            print('Oops! You already guessed that letter (not in the word).', getGuessedWord(secretWord, lettersGuessed))
+            guessesRemaining -= 1
+
+    if isWordGuessed(secretWord, lettersGuessed) == True:
+      print('Congratulations, you won!', getGuessedWord(secretWord, lettersGuessed))
 
         
-        
+                
+                
 
 
-# When you've completed your hangman function, uncomment these two lines
-# and run this file to test! (hint: you might want to pick your own
-# secretWord while you're testing)
 
 # secretWord = chooseWord(wordlist).lower()
 secretWord = chooseWord(wordlist)
