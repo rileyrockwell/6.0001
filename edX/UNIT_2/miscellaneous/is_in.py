@@ -27,6 +27,8 @@ def isIn(char, aStr):
 	else:
 		# set the lower bound and run again
 		return isIn(char, aStr[mid_index + 1:])
+	
+	print('testing')
 
 
 print(isIn('d', 'abcdefg'))
