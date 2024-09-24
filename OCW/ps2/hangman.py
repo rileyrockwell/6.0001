@@ -264,7 +264,7 @@ if __name__ == "__main__":
     # uncomment the following two lines.
     
     secret_word = choose_word(wordlist)
-    secret_word = 'rockwell'
+    secret_word = 'testing'
     hangman(secret_word)
 
 ###############
