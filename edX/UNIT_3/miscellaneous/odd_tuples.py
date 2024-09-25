@@ -1,0 +1,4 @@
+def oddTuples(aTup):
+	pass
+
+	

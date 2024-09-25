@@ -248,8 +248,7 @@ def hangman_with_hints(secret_word):
     
     Follows the other limitations detailed in the problem write-up.
     '''
-    # FILL IN YOUR CODE HERE AND DELETE "pass"
-    pass
+    return -1
 
 
 
@@ -265,7 +264,9 @@ if __name__ == "__main__":
     
     secret_word = choose_word(wordlist)
     secret_word = 'testing'
-    hangman(secret_word)
+    # hangman(secret_word)
+
+    hangman_with_hints(secret_word)
 
 ###############
     
