@@ -15,7 +15,7 @@ SCRABBLE_LETTER_VALUES = {
 # Helper code
 # (you don't need to understand this helper code)
 
-WORDLIST_FILENAME = "/home/riley/6.0001/edX/UNIT_4/words.txt"
+WORDLIST_FILENAME = "/workspaces/6.0001/edX/UNIT 4/problem set 4/words.txt"
 
 def loadWords():
     """
@@ -71,7 +71,22 @@ def getWordScore(word, n):
     n: integer (HAND_SIZE; i.e., hand size required for additional points)
     returns: int >= 0
     """
-    # COME BACK
+    ### if word is an empty string, return 0
+    if len(word) == 0:
+        return 0
+
+    ### the score for a word is:
+    # (1). the sum of the points for letters in the word
+    score = sum(SCRABBLE_LETTER_VALUES[letter] for letter in word)
+
+    # (2). multipied by the length of the word
+    score *= len(word)
+
+    # (3). plus 50 points if all n letters are used on the first turn
+    if len(word) == n:
+        score += 50
+    
+    return score
 
 #
 # Problem #2: Make sure you understand how this function works and what it does!
@@ -140,13 +155,24 @@ def updateHand(hand, word):
     hand: dictionary (string -> int)    
     returns: dictionary (string -> int)
     """
-    # TO DO ... <-- Remove this comment when you code this function
+    # does not modify hand (i.e. does not mutate the original dictionary)
+    new_hand = hand.copy()
+
+    # evaluate each letter in 'word' in order to reduce its value by 1 in the 
+    # new_hand dictionary (given the letter exists)
+    for letter in word:
+        # if the letter key (new_dict[letter]) has a value that is not empty (i.e.
+        # equal to zero)
+        if new_hand.get(letter, 0) != 0:
+            # reduce the integer value in the key:value pair by a value of 1.
+            new_hand[letter] -= 1
+
+    return new_hand
 
 
-
-#
 # Problem #3: Test word validity
 #
+
 def isValidWord(word, hand, wordList):
     """
     Returns True if word is in the wordList and is entirely
@@ -158,7 +184,9 @@ def isValidWord(word, hand, wordList):
     hand: dictionary (string -> int)
     wordList: list of lowercase strings
     """
-    # TO DO ... <-- Remove this comment when you code this function
+    hand_copy = hand.copy()
+   
+    
 
 
 #
