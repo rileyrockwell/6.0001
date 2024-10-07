@@ -29,6 +29,3 @@ def getWordScore(word, n):
         score += 50
     
     return score
-
-
-print(getWordScore('testing', 7))
