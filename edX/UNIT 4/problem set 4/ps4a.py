@@ -320,9 +320,16 @@ def playGame(wordList):
         # rerun the function to ask for correct user-input
         return playGame(wordList)
     
-    print()
-    print(f"You entered {game_type}")
-   
+    if game_type == 'n':
+        n = HAND_SIZE
+        hand = dealHand(wordList, n)
+        playHand(hand.copy(), wordList, n)
+
+    elif game_type == 'r':
+        playHand(hand.copy(), wordList, )
+
+    elif game_type == 'e':
+        print('Goodbye!')
 
 
 
