@@ -208,7 +208,6 @@ def isValidWord(word, hand, wordList):
     # 'ran out' of letters (i.e. hand_copy[letter] == 0), return False
     return False
 
-    
 
 #
 # Problem #4: Playing a hand
@@ -221,7 +220,7 @@ def calculateHandlen(hand):
     hand: dictionary (string-> int)
     returns: integer
     """
-    # TO DO... <-- Remove this comment when you code this function
+    return sum(hand.values())
 
 
 
