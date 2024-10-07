@@ -24,14 +24,14 @@ def loadWords():
     Depending on the size of the word list, this function may
     take a while to finish.
     """
-    print("Loading word list from file...")
+    # print("Loading word list from file...")
     # inFile: file
     inFile = open(WORDLIST_FILENAME, 'r')
     # wordList: list of strings
     wordList = []
     for line in inFile:
         wordList.append(line.strip().lower())
-    print("  ", len(wordList), "words loaded.")
+    # print("  ", len(wordList), "words loaded.")
     return wordList
 
 def getFrequencyDict(sequence):
@@ -225,9 +225,7 @@ def calculateHandlen(hand):
 
 
 def playHand(hand, wordList, n):
-    """
-    collaborator: https://github.com/AlessandroCorradini/MIT-6.00.1x-Introduction-to-Computer-Science-and-Programming-Using-Python/blob/master/Problem%20Set%204/Problem%205%20-%20Playing%20a%20Hand.py
-    
+    """    
     Allows the user to play the given hand, as follows:
 
     * The hand is displayed.
@@ -308,8 +306,46 @@ def playGame(wordList):
  
     2) When done playing the hand, repeat from step 1    
     """
-    # TO DO ... <-- Remove this comment when you code this function
-    print("playGame not yet implemented.") # <-- Remove this line when you code the function
+    try:
+        game_type = input('Enter \'n\' to deal a new hand, \'r\' to replay the last hand, or \'e\' to end game: ').lower()
+
+        # assume the user selects a correct string input
+        
+        # generate a hand size at random between 1 and 7 letters long
+        n = 3
+
+        # deal a hand to be used in the repeat process, if selected
+        hand = dealHand(n)
+
+
+        if game_type not in ['n', 'r', 'e']:
+            raise ValueError('Invalid input.')
+    
+    except ValueError as error:
+        print(error)
+        # rerun the function to ask for correct user-input
+        return playGame(wordList)
+    
+    ###
+    current_hand = None
+
+    if game_type == 'n':
+        current_hand = dealHand(HAND_SIZE)
+        playHand(current_hand.copy(), wordList, n)
+        print()
+
+    if game_type == 'r':
+        if current_hand != None:
+            playHand(current_hand.copy(), wordList, n)
+            print()
+        else:
+            print('You have not played a hand yet. Please play a new hand first.')
+            return playGame(wordList)
+
+    if game_type == 'e':
+        print('Goodbye!')
+
+
    
 
 
@@ -319,6 +355,6 @@ def playGame(wordList):
 #
 if __name__ == '__main__':
     wordList = loadWords()
-    playHand({'a': 2, 'e': 2, 'p': 1, 'r': 1, 't': 1}, wordList, 7)
+    # playHand({'a': 2, 'e': 2, 'p': 1, 'r': 1, 't': 1}, wordList, 7)
     playGame(wordList)
 
