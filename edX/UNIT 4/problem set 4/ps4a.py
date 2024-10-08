@@ -306,30 +306,23 @@ def playGame(wordList):
  
     2) When done playing the hand, repeat from step 1    
     """
-    # ensure the user inputs a correct string
-    try:
-        game_type = input('Enter \'n\' to deal a new hand, \'r\' to replay the last hand, or \'e\' to end game: ').lower()
-        
-        # catch incorrect user input
-        if game_type not in ['n', 'r', 'e']:
-            raise ValueError('Invalid input.')
+    hand = None
 
-    # catch incorrect user input
-    except ValueError as error:
-        print(error)
-        # rerun the function to ask for correct user-input
-        return playGame(wordList)
-    
-    if game_type == 'n':
-        n = HAND_SIZE
-        hand = dealHand(n)
-        playHand(hand.copy(), wordList, n)
+    while True:
+        user_input = input("Enter n to deal a new hand, r to replay the last hand, or e to end game: ")
 
-    elif game_type == 'r':
-        playHand(hand.copy(), wordList, )
-
-    elif game_type == 'e':
-        print('Goodbye!')
+        if user_input == 'n':
+            hand = dealHand(HAND_SIZE)
+            playHand(hand, wordList, HAND_SIZE)
+        elif user_input == 'r':
+            if hand is None:
+                print("You have not played a hand yet. Please play a new hand first!")
+            else:
+                playHand(hand, wordList, HAND_SIZE)
+        elif user_input == 'e':
+            break
+        else:
+            print("Invalid command.")
 
 
 #
