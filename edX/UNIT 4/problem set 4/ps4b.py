@@ -1,7 +1,6 @@
 from ps4a import *
 import time
 
-
 #
 #
 # Computer chooses a word
