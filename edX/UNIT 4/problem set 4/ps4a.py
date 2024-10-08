@@ -322,7 +322,7 @@ def playGame(wordList):
     
     if game_type == 'n':
         n = HAND_SIZE
-        hand = dealHand(wordList, n)
+        hand = dealHand(n)
         playHand(hand.copy(), wordList, n)
 
     elif game_type == 'r':
@@ -339,4 +339,3 @@ if __name__ == '__main__':
     wordList = loadWords()
     # playHand({'a': 2, 'e': 2, 'p': 1, 'r': 1, 't': 1}, wordList, 7)
     playGame(wordList)
-
