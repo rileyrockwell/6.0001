@@ -332,7 +332,6 @@ def playGame(wordList):
         print('Goodbye!')
 
 
-
 #
 # Build data structures used for entire session and play game
 #
