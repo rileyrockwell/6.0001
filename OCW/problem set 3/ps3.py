@@ -63,9 +63,8 @@ def get_frequency_dict(sequence):
 # (end of helper code)
 # -----------------------------------
 
-#
-# Problem #1: Scoring a word
-#
+### Problem #1: Scoring a word ###
+
 def get_word_score(word, n):
     """
     Returns the score for a word. Assumes the word is a
@@ -97,9 +96,8 @@ def get_word_score(word, n):
     second_component = max(1, 7 * wordlen - 3 * (n - wordlen))
     return first_component * second_component
 
-#
 # Make sure you understand how this function works and what it does!
-#
+
 def display_hand(hand):
     """
     Displays the letters currently in the hand.
@@ -118,10 +116,10 @@ def display_hand(hand):
              print(letter, end=' ')      # print all on the same line
     print()                              # print an empty line
 
-#
+
 # Make sure you understand how this function works and what it does!
 # You will need to modify this for Problem #4.
-#
+
 def deal_hand(n):
     """
     Returns a random hand containing n lowercase letters.
@@ -149,9 +147,9 @@ def deal_hand(n):
     
     return hand
 
-#
-# Problem #2: Update a hand by removing letters
-#
+
+### Problem #2: Update a hand by removing letters ###
+
 def update_hand(hand, word):
     """
     Does NOT assume that hand contains every letter in word at least as
@@ -179,9 +177,8 @@ def update_hand(hand, word):
     return new_hand
 
 
-#
-# Problem #3: Test word validity
-#
+### Problem #3: Test word validity ###
+
 def is_valid_word(word, hand, word_list):
     """
     Returns True if word is in the word_list and is entirely
@@ -205,9 +202,9 @@ def is_valid_word(word, hand, word_list):
     
     return True
 
-#
-# Problem #5: Playing a hand
-#
+
+### Problem #5: Playing a hand ###
+
 def calculate_handlen(hand):
     """ 
     Returns the length (number of letters) in the current hand.
@@ -292,14 +289,7 @@ def play_hand(hand, word_list):
     return total_score
 
 
-#
-# Problem #6: Playing a game
-# 
-
-
-#
-# procedure you will use to substitute a letter in a hand
-#
+### Problem #6: Playing a game ###
 
 def substitute_hand(hand, letter):
     """ 
@@ -323,9 +313,18 @@ def substitute_hand(hand, letter):
     letter: string
     returns: dictionary (string -> int)
     """
+    if letter not in hand:
+        return hand.copy()
+
+    all_letters = VOWELS + CONSONANTS
+    available_letters = [l for l in all_letters if l not in hand]
+
+    new_letter = random.choice(available_letters)
+    new_hand = hand.copy()
+
+    new_hand[new_letter] = new_hand.pop(letter)
     
-    pass  # TO DO... Remove this line when you implement this function
-       
+    return new_hand
     
 def play_game(word_list):
     """
@@ -357,16 +356,45 @@ def play_game(word_list):
 
     word_list: list of lowercase strings
     """
-    
-    print("play_game not implemented.") # TO DO... Remove this line when you implement this function
-    
+    total_score = 0
+    substitute_used = False
+    replay_used = False
+
+    num_hands = int(input("Enter total number of hands: "))
+
+    for _ in range(num_hands):
+        hand = deal_hand(HAND_SIZE)
+        print("Current hand: ", end="")
+        display_hand(hand)
+
+        if not substitute_used:
+            substitute = input("Would you like to substitute a letter? (yes/no) ")
+            if substitute.lower() == 'yes':
+                letter = input("Which letter would you like to replace: ")
+                hand = substitute_hand(hand, letter)
+                substitute_used = True
+
+        hand_score = play_hand(hand, word_list)
+
+        if not replay_used:
+            replay = input("Would you like to replay the hand? (yes/no) ")
+            if replay.lower() == 'yes':
+                replay_score = play_hand(hand, word_list)
+                hand_score = max(hand_score, replay_score)
+                replay_used = True
+
+        total_score += hand_score
+        print(f"Total score for this hand: {hand_score}")
+        print("----------")
+
+    print(f"Total score over all hands: {total_score}")
+    return total_score
 
 
-#
 # Build data structures used for entire session and play game
 # Do not remove the "if __name__ == '__main__':" line - this code is executed
 # when the program is run directly, instead of through an import statement
-#
+
 if __name__ == '__main__':
     word_list = load_words()
     # play_game(word_list)
