@@ -1,7 +1,7 @@
 # Problem Set 2, hangman.py
-# Name: 
+# Name: Riley Rockwell
 # Collaborators:
-# Time spent:
+# Time spent: ~6 hours (multiple sessions)
 
 # Hangman Game
 # -----------------------------------
