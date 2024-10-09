@@ -13,15 +13,12 @@ def best_savings_rate(base_annual_salary, duration):
 
 	This means we can search for an integer between 0 and 10000 (using integer division), and then convert it to a decimal percentage (using float division) to use when we are calculating the current_savings after 36 months
 	"""
-
 	total_cost = 1000000
 	portion_down_payment = 0.25
 	annual_return = 0.04
 	monthly_return = annual_return / 12
 	semi_annual_raise = 0.07
 	down_payment = total_cost * portion_down_payment
-
-
 
 	# to ensure current savings can cover the downpayment (to within 100 dollars)
 	epsilon = 100
@@ -59,8 +56,6 @@ def best_savings_rate(base_annual_salary, duration):
 				monthly_salary = annual_salary / 12
 				monthly_savings = monthly_salary * (portion_saved / 10000)
 
-		
-
 		# print(down_payment, current_savings)
 
 		### bisection ###
@@ -90,8 +85,5 @@ def best_savings_rate(base_annual_salary, duration):
 		print("Iterations: " + str(iterations))
 
 
-
-
 print(best_savings_rate(150000, 36))
-# print(best_savings_rate(300000))
-# print(best_savings_rate(10000))
+print(best_savings_rate(300000, 48))
