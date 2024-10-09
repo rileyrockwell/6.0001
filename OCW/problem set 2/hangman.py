@@ -12,7 +12,7 @@
 import random
 import string
 
-WORDLIST_FILENAME = "/home/riley/6.0001/OCW/ps2/words.txt"
+WORDLIST_FILENAME = "/workspaces/6.0001/OCW/problem set 2/words.txt"
 
 
 def load_words():
@@ -275,3 +275,9 @@ if __name__ == "__main__":
     
     #secret_word = choose_word(wordlist)
     #hangman_with_hints(secret_word)
+
+
+if __name__ == "__main__":
+    # pass
+    word = choose_word(wordlist)
+    print(word)
