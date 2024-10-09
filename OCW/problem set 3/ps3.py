@@ -23,7 +23,7 @@ SCRABBLE_LETTER_VALUES = {
 # Helper code
 # (you don't need to understand this helper code)
 
-WORDLIST_FILENAME = "words.txt"
+WORDLIST_FILENAME = "/workspaces/6.0001/OCW/problem set 3/words.txt"
 
 def load_words():
     """
@@ -91,8 +91,11 @@ def get_word_score(word, n):
     n: int >= 0
     returns: int >= 0
     """
-    
-    pass  # TO DO... Remove this line when you implement this function
+    word = word.lower()
+    first_component = sum(SCRABBLE_LETTER_VALUES[letter] for letter in word)
+    wordlen = len(word)
+    second_component = max(1, 7 * wordlen - 3 * (n - wordlen))
+    return first_component * second_component
 
 #
 # Make sure you understand how this function works and what it does!
@@ -167,8 +170,14 @@ def update_hand(hand, word):
     hand: dictionary (string -> int)    
     returns: dictionary (string -> int)
     """
+    new_hand = hand.copy()
+    for letter in word:
+        if letter in new_hand:
+            new_hand[letter] -= 1
+            if new_hand[letter] <= 0:
+                del new_hand[letter]
+    return new_hand
 
-    pass  # TO DO... Remove this line when you implement this function
 
 #
 # Problem #3: Test word validity
@@ -184,8 +193,17 @@ def is_valid_word(word, hand, word_list):
     word_list: list of lowercase strings
     returns: boolean
     """
-
-    pass  # TO DO... Remove this line when you implement this function
+    word = word.lower()
+    word_freq = get_frequency_dict(word)
+    
+    if word not in word_list:
+        return False
+    
+    for letter in word_freq:
+        if word_freq[letter] > hand.get(letter, 0):
+            return False
+    
+    return True
 
 #
 # Problem #5: Playing a hand
@@ -197,11 +215,10 @@ def calculate_handlen(hand):
     hand: dictionary (string-> int)
     returns: integer
     """
-    
-    pass  # TO DO... Remove this line when you implement this function
+    return sum(hand.values())
+
 
 def play_hand(hand, word_list):
-
     """
     Allows the user to play the given hand, as follows:
 
@@ -228,41 +245,51 @@ def play_hand(hand, word_list):
       hand: dictionary (string -> int)
       word_list: list of lowercase strings
       returns: the total score for the hand
-      
     """
-    
-    # BEGIN PSEUDOCODE <-- Remove this comment when you implement this function
     # Keep track of the total score
-    
+    total_score = 0
+
     # As long as there are still letters left in the hand:
-    
+    while calculate_handlen(hand) > 0:
+
         # Display the hand
-        
+        print("Current Hand: ", end="")
+        display_hand(hand)
+
         # Ask user for input
+        word = input('Enter word, or "!!" to indicate that you are finished: ')
         
         # If the input is two exclamation points:
+        if word == '!!':
         
             # End the game (break out of the loop)
-
+            break
             
         # Otherwise (the input is not two exclamation points):
+        else:
 
             # If the word is valid:
-
+            if is_valid_word(word, hand, word_list):
                 # Tell the user how many points the word earned,
                 # and the updated total score
+                word_score = get_word_score(word, calculate_handlen(hand))
+                total_score += word_score
+                print(f'"{word}" earned {word_score} points. Total: {total_score} points')
 
             # Otherwise (the word is not valid):
+            else:
                 # Reject invalid word (print a message)
+                print('Invalid word. Please try again.')
                 
             # update the user's hand by removing the letters of their inputted word
-            
+            hand = update_hand(hand, word)
 
     # Game is over (user entered '!!' or ran out of letters),
     # so tell user the total score
+    print(f"Total score for this hand: {total_score}")
 
     # Return the total score as result of function
-
+    return total_score
 
 
 #
@@ -342,4 +369,6 @@ def play_game(word_list):
 #
 if __name__ == '__main__':
     word_list = load_words()
-    play_game(word_list)
+    # play_game(word_list)
+    hand = deal_hand(7)
+    play_hand(hand, word_list)
