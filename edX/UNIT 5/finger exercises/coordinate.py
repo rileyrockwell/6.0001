@@ -27,8 +27,8 @@ class Coordinate(object):
             return self.getX() == other.getX() and self.getY() == other.getY()
         return False
     
-    def __repr__(self):
-        return f"Coordinate({self.getX()}, {self.getY()})"
+    # def __repr__(self):
+    #     return f"Coordinate({self.getX()}, {self.getY()})"
     
     def __repr__(self):
         return f"Coordinate({self.x}, {self.y})"
