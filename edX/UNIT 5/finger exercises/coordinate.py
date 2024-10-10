@@ -13,6 +13,16 @@ class Coordinate(object):
         return self.y
 
     def __str__(self):
+        # return f"{self.x}, {self.y}"
+        # return f"{self.getX()}, {self.getY()}"
         return '<' + str(self.getX()) + ',' + str(self.getY()) + '>'
+
+    def __eq__(self):
+        return self.x == self.y
     
-print('testing')
+    def __repr__(self):
+        return c
+    
+    
+instance = Coordinate(0, 1)
+print(instance)
