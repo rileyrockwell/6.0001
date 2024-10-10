@@ -18,10 +18,19 @@ class Coordinate(object):
         return '<' + str(self.getX()) + ',' + str(self.getY()) + '>'
 
     def __eq__(self):
-        return self.x == self.y
+        return self.getX() == self.getY()
+    
+    def __eq__(self, other):
+        if isinstance(other, Coordinate):
+            return self.getX() == other.getX() and self.getY() == other.getY()
+        return False
     
     def __repr__(self):
-        return c
+        return f'Coordinate({self.getX()}, {self.getY()})'
+
+    def __repr__(self):
+        return f'Coordinate({self.x}, {self.y})'
+        # return f'Coordinate({self.getX()}, {self.getY()})'
     
     
 instance = Coordinate(0, 1)
