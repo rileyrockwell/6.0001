@@ -25,4 +25,4 @@ class Coordinate(object):
     
     
 instance = Coordinate(0, 1)
-print(instance)
+print(instance) 
