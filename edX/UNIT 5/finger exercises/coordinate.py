@@ -16,22 +16,19 @@ class Coordinate(object):
         # return f"{self.x}, {self.y}"
         # return f"{self.getX()}, {self.getY()}"
         return '<' + str(self.getX()) + ',' + str(self.getY()) + '>'
-
+    
     def __eq__(self):
-        return self.getX() == self.getY()
-    
-    def __eq__(self, other):
-        if isinstance(other, Coordinate):
-            return self.getX() == other.getX() and self.getY() == other.getY()
-        return False
-    
-    def __repr__(self):
         return f'Coordinate({self.getX()}, {self.getY()})'
-
+    
     def __repr__(self):
         return f'Coordinate({self.x}, {self.y})'
         # return f'Coordinate({self.getX()}, {self.getY()})'
     
     
-instance = Coordinate(0, 1)
-print(instance) 
+c1 = Coordinate(1, -8)
+print(c1)
+
+c2 = Coordinate(1, -8)
+print(c2)
+
+print(c1 == c2)
