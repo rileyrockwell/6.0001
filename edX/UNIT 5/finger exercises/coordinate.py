@@ -14,3 +14,5 @@ class Coordinate(object):
 
     def __str__(self):
         return '<' + str(self.getX()) + ',' + str(self.getY()) + '>'
+    
+print('testing')
