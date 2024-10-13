@@ -32,4 +32,5 @@ class intSet(object):
 
 
 instance = intSet()
+instance.insert(0)
 print(instance)
