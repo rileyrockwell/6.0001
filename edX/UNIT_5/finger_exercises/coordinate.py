@@ -11,7 +11,7 @@ class Coordinate(object):
     def getY(self):
         # Getter method for a Coordinate object's y coordinate
         return self.y
-
+    
     def __str__(self):
         # return f"{self.x}, {self.y}"
         # return f"{self.getX()}, {self.getY()}"
