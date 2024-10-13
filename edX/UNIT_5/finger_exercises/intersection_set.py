@@ -25,6 +25,16 @@ class intSet(object):
         except:
             raise ValueError(str(e) + ' not found')
 
+    def intersect(self, other):
+        # intialize a new intSet
+        commonValueSet = intSet()
+        # Go through the values in this set
+        for val in self.vals:
+            # Check if each value is a member of the other set
+            if other.member(val):
+                commonValueSet.insert(val)
+        return commonValueSet
+
     def __str__(self):
         """Returns a string representation of self"""
         self.vals.sort()
@@ -32,5 +42,7 @@ class intSet(object):
 
 
 instance = intSet()
+instance.insert(1)
 instance.insert(0)
+instance.insert(1)
 print(instance)
