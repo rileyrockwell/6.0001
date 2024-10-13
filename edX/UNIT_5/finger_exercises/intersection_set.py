@@ -30,3 +30,6 @@ class intSet(object):
         self.vals.sort()
         return '{' + ','.join([str(e) for e in self.vals]) + '}'
 
+
+instance = intSet()
+print(instance)
