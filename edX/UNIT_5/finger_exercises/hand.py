@@ -82,7 +82,9 @@ class Hand(object):
         word: string
         returns: Boolean (if the word was or was not made)
         """
-        return -1
+        
+
+
 
 instance = Hand(7)
 print(instance)
@@ -91,8 +93,18 @@ print(instance.calculateLen())
 instance.setDummyHand('testing')
 print(instance)
 
-instance.update('t')
+instance.setDummyHand('gfedcba')
 print(instance)
+
+instance.update('efg')
+print(instance)
+
+
+
+
+# instance.update('t')
+# instance.update('g')
+# print(instance)
 
 # myHand = Hand(7)
 # print(myHand)
@@ -104,4 +116,3 @@ print(instance)
 
 # myHand.update('za')
 # print(myHand)
-
