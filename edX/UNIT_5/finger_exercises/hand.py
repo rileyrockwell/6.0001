@@ -82,11 +82,16 @@ class Hand(object):
         word: string
         returns: Boolean (if the word was or was not made)
         """
-        # Your code here
-        raise NotImplementedError()
-
+        return -1
 
 instance = Hand(7)
+print(instance)
+print(instance.calculateLen())
+
+instance.setDummyHand('testing')
+print(instance)
+
+instance.update('t')
 print(instance)
 
 # myHand = Hand(7)
@@ -99,3 +104,4 @@ print(instance)
 
 # myHand.update('za')
 # print(myHand)
+
