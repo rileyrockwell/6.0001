@@ -99,6 +99,8 @@ class Hand(object):
     def update(self, word):
         hand_copy = self.hand.copy()
 
+        return hand_copy
+
         for letter in word:
             if hand_copy.get(letter, 0) == 0:
                 pass
@@ -108,12 +110,11 @@ class Hand(object):
 
 
 myHand = Hand(7)
-print(myHand)
+print('generic hand', myHand.calculateLen())
+
+myHand.setDummyHand('testing')
+print('user-defined hand', myHand)
 print(myHand.calculateLen())
 
-myHand.setDummyHand('aazzmsp')
-print(myHand)
-print(myHand.calculateLen())
-
-myHand.update('az')
+print(myHand.update('t'))
 print(myHand)
