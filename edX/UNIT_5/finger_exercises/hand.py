@@ -82,37 +82,38 @@ class Hand(object):
         word: string
         returns: Boolean (if the word was or was not made)
         """
+        # Make a copy of the hand to modify
+        hand_copy = self.hand.copy()
         
+        for letter in word:
+            if hand_copy.get(letter, 0) == 0:
+                # If the letter is not in the hand or not enough of it, return False
+                return False
+            hand_copy[letter] -= 1
+        
+        # If we can make the word, update the hand
+        self.hand = hand_copy
+        return True
 
 
+    def update(self, word):
+        hand_copy = self.hand.copy()
 
-instance = Hand(7)
-print(instance)
-print(instance.calculateLen())
+        for letter in word:
+            if hand_copy.get(letter, 0) == 0:
+                pass
 
-instance.setDummyHand('testing')
-print(instance)
-
-instance.setDummyHand('gfedcba')
-print(instance)
-
-instance.update('efg')
-print(instance)
+        return hand_copy
+    
 
 
+myHand = Hand(7)
+print(myHand)
+print(myHand.calculateLen())
 
+myHand.setDummyHand('aazzmsp')
+print(myHand)
+print(myHand.calculateLen())
 
-# instance.update('t')
-# instance.update('g')
-# print(instance)
-
-# myHand = Hand(7)
-# print(myHand)
-# print(myHand.calculateLen())
-
-# myHand.setDummyHand('aazzmsp')
-# print(myHand)
-# print(myHand.calculateLen())
-
-# myHand.update('za')
-# print(myHand)
+myHand.update('az')
+print(myHand)
