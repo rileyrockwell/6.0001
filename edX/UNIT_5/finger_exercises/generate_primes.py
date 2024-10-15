@@ -11,3 +11,5 @@ def genPrimes():
             prime_list.append(candidate)
             yield candidate
         candidate += 1
+
+print(genPrimes())
