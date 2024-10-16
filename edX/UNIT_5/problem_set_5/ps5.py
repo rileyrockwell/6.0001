@@ -125,16 +125,35 @@ class Message(object):
         Returns: the message text (string) in which every character is shifted
              down the alphabet by the input shift
         '''
-        
+        return_message_text = ''
+
+        for char in self.message_text:
+            # if character is a letter (i.e. not a space or punctuation), apply the shift
+            if char in string.ascii_letters:
+                return_message_text += self.build_shift_dict(shift)[char]
+            # if character is not a ltter (i.e. is a space or punctuation)
+            else:
+                return_message_text += char
+
+        return return_message_text
+
+
+
 
 
 
 words = load_words(WORDLIST_FILENAME)
 instance = Message('testing message text story')
+instance = Message('testing message text story!')
 print(instance.get_message_text())
 print(instance.message_text)
+print(instance.apply_shift(1))
 
-print(instance.build_shift_dict(1))
+instance = Message('abcdefg! @.com')
+print(instance.message_text)
+print(instance.apply_shift(0))
+print(instance.apply_shift(1))
+
 
 
 
