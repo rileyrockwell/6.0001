@@ -11,14 +11,14 @@ def load_words(file_name):
     Depending on the size of the word list, this function may
     take a while to finish.
     '''
-    print('Loading word list from file...')
+    # print('Loading word list from file...')
     # inFile: file
     in_file = open(file_name, 'r')
     # line: string
     line = in_file.readline()
     # word_list: list of strings
     word_list = line.split()
-    print('  ', len(word_list), 'words loaded.')
+    # print('  ', len(word_list), 'words loaded.')
     in_file.close()
     return word_list
 
@@ -103,6 +103,7 @@ class Message(object):
                  another letter (string). 
         '''
         pass #delete this line and replace with your code here
+        
 
     def apply_shift(self, shift):
         '''
@@ -117,6 +118,13 @@ class Message(object):
              down the alphabet by the input shift
         '''
         pass #delete this line and replace with your code here
+
+
+words = load_words(WORDLIST_FILENAME)
+instance = Message('testing message text story')
+print(instance.get_message_text())
+print(instance.message_text)
+
 
 class PlaintextMessage(Message):
     def __init__(self, text, shift):
