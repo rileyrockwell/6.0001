@@ -110,9 +110,6 @@ class Message(object):
 
         return return_dict
 
-        # STOP SELLING YOURSELF SO SHORT? 8/10: GITHUB PRODUCTIONS => NEXT DESTINATION. FOLLOW MATH > INTUITION.
-
-
     def apply_shift(self, shift):
         '''
         Applies the Caesar Cipher to self.message_text with the input shift.
