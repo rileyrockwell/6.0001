@@ -102,8 +102,16 @@ class Message(object):
         Returns: a dictionary mapping a letter (string) to 
                  another letter (string). 
         '''
-        pass #delete this line and replace with your code here
-        
+        initial_dict = {key: value for value, key in enumerate(string.ascii_letters)}
+
+        reference_dict = {key: value for key, value in enumerate(string.ascii_letters)}
+
+        return_dict = {key: reference_dict[(initial_dict[key] + shift) % 52] for key in initial_dict}
+
+        return return_dict
+
+        # STOP SELLING YOURSELF SO SHORT? 8/10: GITHUB PRODUCTIONS => NEXT DESTINATION. FOLLOW MATH > INTUITION.
+
 
     def apply_shift(self, shift):
         '''
@@ -117,13 +125,17 @@ class Message(object):
         Returns: the message text (string) in which every character is shifted
              down the alphabet by the input shift
         '''
-        pass #delete this line and replace with your code here
+        
+
 
 
 words = load_words(WORDLIST_FILENAME)
 instance = Message('testing message text story')
 print(instance.get_message_text())
 print(instance.message_text)
+
+print(instance.build_shift_dict(1))
+
 
 
 class PlaintextMessage(Message):
