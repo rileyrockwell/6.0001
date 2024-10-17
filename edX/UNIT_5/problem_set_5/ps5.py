@@ -187,13 +187,6 @@ class Message(object):
         return return_message_text
 
 
-
-
-# TO DO:
-# -upper/lowercase
-# -build_shift_dict => 'passed'
-
-
 class PlaintextMessage(Message):
     def __init__(self, text, shift):
         '''
@@ -276,7 +269,7 @@ class CiphertextMessage(Message):
         self.valid_words = load_words(WORDLIST_FILENAME)
 
 
-    def decrypt_message(self):
+    def decrypt_message1(self):
         '''
         Decrypt self.message_text by trying every possible shift value
         and find the "best" one. We will define "best" as the shift that
@@ -310,9 +303,38 @@ class CiphertextMessage(Message):
             # create a dictioanry mapping the shift value to the valid_word_count
             evaluation_dict[shift_value] = valid_word_count
 
-        
-
         return evaluation_dict.values()
+
+
+    def decrypt_message(self):
+        '''
+        Decrypt self.message_text by trying every possible shift value
+        and find the "best" one. We will define "best" as the shift that
+        creates the maximum number of real words when we use apply_shift(shift)
+        on the message text. If s is the original shift value used to encrypt
+        the message, then we would expect 26 - s to be the best shift value 
+        for decrypting it.
+
+        Returns: a tuple of the best shift value used to decrypt the message
+        and the decrypted message text using that shift value
+        '''
+        max_valid_words = 0
+        best_shift = 0
+        best_decrypted_message = ""
+        
+        # Test all possible shifts
+        for shift in range(26):
+            decrypted_message = self.apply_shift(shift)
+            word_list = decrypted_message.split()
+            valid_word_count = sum([is_word(self.valid_words, word) for word in word_list])
+            
+            # Check if this shift gives more valid words
+            if valid_word_count > max_valid_words:
+                max_valid_words = valid_word_count
+                best_shift = shift
+                best_decrypted_message = decrypted_message
+        
+        return best_shift, best_decrypted_message
 
 
 
@@ -333,3 +355,6 @@ instance = CiphertextMessage(testing_str)
 print(instance.apply_shift(25))
 print(instance.decrypt_message())
 
+story = get_story_string()
+instance = CiphertextMessage(story)
+print(instance.decrypt_message())
