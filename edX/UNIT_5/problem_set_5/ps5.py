@@ -141,21 +141,6 @@ class Message(object):
 # -build_shift_dict => 'passed'
 
 
-words = load_words(WORDLIST_FILENAME)
-instance = Message('testing message text story')
-instance = Message('testing message text story!')
-print(instance.get_message_text())
-print(instance.message_text)
-print(instance.apply_shift(1))
-
-instance = Message('abcdefg! @.com')
-print(instance.message_text)
-print(instance.apply_shift(0))
-print(instance.apply_shift(1))
-
-
-
-
 class PlaintextMessage(Message):
     def __init__(self, text, shift):
         '''
@@ -174,11 +159,10 @@ class PlaintextMessage(Message):
         Hint: consider using the parent class constructor so less 
         code is repeated
         '''
-        # parent class constructor...
-
         Message.__init__(self, text)
-        # self.valid words is already inherited from Message?
-
+        self.shift = shift
+        self.encrypting_dict = self.build_shift_dict(shift)
+        self.message_text_encrytped = self.apply_shift(shift)
 
 
     def get_shift(self):
@@ -203,7 +187,7 @@ class PlaintextMessage(Message):
         
         Returns: self.message_text_encrypted
         '''
-        return self.get_message_text_encrypted
+        return self.message_text_encrypted
 
     def change_shift(self, shift):
         '''
@@ -216,14 +200,14 @@ class PlaintextMessage(Message):
 
         Returns: nothing
         '''
-        pass #delete this line and replace with your code here
+        # start w/ the obvious
+        self.shift = shift
 
+        
 
-instance = Message('text')
-
-instance = PlaintextMessage('text', 6)
+instance = Message('message text testing')
 print(instance.message_text)
-print(instance.valid_words)
+print(instance.apply_shift(1))
 
 
 class CiphertextMessage(Message):
