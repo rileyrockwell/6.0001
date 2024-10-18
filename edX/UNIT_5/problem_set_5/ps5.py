@@ -338,23 +338,14 @@ class CiphertextMessage(Message):
 
 
 
-#Example test case (PlaintextMessage)
-# plaintext = PlaintextMessage('hello', 2)
-# print('Expected Output: jgnnq')
-# print('Actual Output:', plaintext.get_message_text_encrypted())
-    
-# #Example test case (CiphertextMessage)
-# ciphertext = CiphertextMessage('jgnnq')
-# print('Expected Output:', (24, 'hello'))
-# print('Actual Output:', ciphertext.decrypt_message())
 
-instance = CiphertextMessage('testing message text')
-testing_str = instance.apply_shift(1)
-print(testing_str)
-instance = CiphertextMessage(testing_str)
-print(instance.apply_shift(25))
-print(instance.decrypt_message())
-
-story = get_story_string()
-instance = CiphertextMessage(story)
-print(instance.decrypt_message())
+if __name__ == "__main__":
+    # Example test case (PlaintextMessage)
+    plaintext = PlaintextMessage('hello', 2)
+    print('Expected Output: jgnnq')
+    print('Actual Output:', plaintext.get_message_text_encrypted())
+        
+    #Example test case (CiphertextMessage)
+    ciphertext = CiphertextMessage('jgnnq')
+    print('Expected Output:', (24, 'hello'))
+    print('Actual Output:', ciphertext.decrypt_message())
