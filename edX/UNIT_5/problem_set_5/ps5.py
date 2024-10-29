@@ -22,6 +22,8 @@ def load_words(file_name):
     in_file.close()
     return word_list
 
+
+
 ### DO NOT MODIFY THIS FUNCTION ###
 def is_word(word_list, word):
     '''

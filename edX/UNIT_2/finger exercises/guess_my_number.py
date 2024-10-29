@@ -98,13 +98,13 @@ guesses = 0
 print('Please think of a number between 0 and 100!')
 
 while response != 'c':
-	# reset 'response' each time
+	# reset response each time
 	response = ''
 
 	# initial bisection step
 	guess = (low + high) // 2
 
-	# user input response (ensure input is correct)		
+	# ensure input is correct
 	while response not in ['h', 'l', 'c']:
 
 		# prompt user with guess each time

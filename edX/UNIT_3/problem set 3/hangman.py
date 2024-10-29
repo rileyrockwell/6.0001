@@ -37,7 +37,7 @@ All functions return something. If a function you write does not return anything
 import random
 import string
 
-WORDLIST_FILENAME = "/home/riley/6.0001/edX/UNIT_3/words.txt"
+WORDLIST_FILENAME = "/home/riley/6.0001/edX/UNIT_3/problem set 3/words.txt"
 
 def loadWords():
     """
@@ -140,11 +140,42 @@ def hangman(secretWord):
       partially guessed word so far, as well as letters that the 
       user has not yet guessed.
 
-    * If the user guesses a letter not in available letters, print
-      a message telling the user that they have already guessed that
-      letter and need to try again.
-    
-
     Follows the other limitations detailed in the problem write-up.
     '''
-    pass
+    # Initializations
+    mistakesMade = 0
+    lettersGuessed = []
+    maxGuesses = 8
+    
+    print("Welcome to the game, Hangman!")
+    print("I am thinking of a word that is", len(secretWord), "letters long.")
+    
+    # Game loop
+    while mistakesMade < maxGuesses:
+        print("-------------")
+        print("You have", maxGuesses - mistakesMade, "guesses left.")
+        availableLetters = getAvailableLetters(lettersGuessed)
+        print("Available letters:", availableLetters)
+        
+        guess = input("Please guess a letter: ").lower()
+        
+        if guess in lettersGuessed:
+            print("Oops! You've already guessed that letter:", getGuessedWord(secretWord, lettersGuessed))
+        elif guess in secretWord:
+            lettersGuessed.append(guess)
+            print("Good guess:", getGuessedWord(secretWord, lettersGuessed))
+        else:
+            lettersGuessed.append(guess)
+            mistakesMade += 1
+            print("Oops! That letter is not in my word:", getGuessedWord(secretWord, lettersGuessed))
+        
+        # Check if the word is fully guessed
+        if isWordGuessed(secretWord, lettersGuessed):
+            print("-------------")
+            print("Congratulations, you won!")
+            return
+
+    # If the loop ends, it means the player lost
+    print("-------------")
+    print("Sorry, you ran out of guesses. The word was", secretWord + ".")
+
