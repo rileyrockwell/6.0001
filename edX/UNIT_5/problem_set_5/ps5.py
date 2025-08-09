@@ -1,7 +1,5 @@
 import string
 
-print('some bullshit')
-
 ### DO NOT MODIFY THIS FUNCTION ###
 def load_words(file_name):
     '''
